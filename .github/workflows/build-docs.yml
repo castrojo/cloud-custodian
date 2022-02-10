@@ -3,7 +3,8 @@ name: cloud-custodian
 
 on:
   - push
-      branches: refresh-generated-requirements
+      branches: 
+        - refresh-generated-requirements
   - pull_request
 
 jobs:
