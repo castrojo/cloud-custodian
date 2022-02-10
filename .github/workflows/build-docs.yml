@@ -2,9 +2,9 @@ name: cloud-custodian
 # https://github.com/ymyzk/tox-gh-actions
 
 on:
-  - push
-      branches: 
-        - '*'
+  push:
+    branches: 
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
