@@ -20,6 +20,8 @@ Filters
   
   - :ref:`finding <aws.common.filters.finding>`
   
+  - :ref:`json-diff <aws.ecr.filters.json-diff>`
+
   - :ref:`lifecycle-rule <aws.ecr.filters.lifecycle-rule>`
 
   - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
@@ -172,6 +174,50 @@ Filters all EC2 Container Registries (ECR) with cross-account access
 Permissions - ecr:GetRepositoryPolicy
 
 
+.. _aws.ecr.filters.json-diff:
+
+json-diff
++++++++++
+Compute the diff from the current resource to a previous version.
+
+A resource matches the filter if a diff exists between the current
+resource and the selected revision.
+
+Utilizes config as a resource revision database.
+
+Revisions can be selected by date, against the previous version, and
+against a locked version (requires use of is-locked filter).
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      selector:
+        enum:
+        - previous
+        - date
+        - locked
+      selector_value:
+        type: string
+      type:
+        enum:
+        - json-diff
+    required:
+    - type
+
+
+
+
+Permissions - config:GetResourceConfigHistory
+
+
 .. _aws.ecr.filters.lifecycle-rule:
 
 lifecycle-rule
@@ -244,6 +290,8 @@ Actions
   - :ref:`invoke-sfn <aws.common.actions.invoke-sfn>`
   
   - :ref:`mark-for-op <aws.common.actions.mark-for-op>`
+  
+  - :ref:`modify-ecr-policy <aws.common.actions.modify-ecr-policy>`
   
   - :ref:`notify <aws.common.actions.notify>`
   

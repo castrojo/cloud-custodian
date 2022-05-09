@@ -869,6 +869,8 @@ The default behavior is `copy-volume-tags: true`.
         type: array
       copy-volume-tags:
         type: boolean
+      description:
+        type: string
       tags:
         type: object
       type:

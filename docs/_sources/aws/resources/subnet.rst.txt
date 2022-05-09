@@ -305,6 +305,8 @@ Actions
   
   - :ref:`mark-for-op <aws.common.actions.mark-for-op>`
   
+  - :ref:`modify <aws.subnet.actions.modify>`
+
   - :ref:`normalize-tag <aws.common.actions.normalize-tag>`
   
   - :ref:`notify <aws.common.actions.notify>`
@@ -328,6 +330,73 @@ Actions
   - :ref:`webhook <aws.common.actions.webhook>`
   
 
+
+
+.. _aws.subnet.actions.modify:
+
+modify
+++++++
+Modify subnet attributes.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: turn-on-public-ip-protection
+            resource: aws.subnet
+            filters:
+              - type: value
+                key: "MapPublicIpOnLaunch.enabled"
+                value: false
+            actions:
+              - type: modify
+                MapPublicIpOnLaunch: false
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      AssignIpv6AddressOnCreation:
+        type: boolean
+      CustomerOwnedIpv4Pool:
+        type: string
+      DisableLniAtDeviceIndex:
+        type: boolean
+      EnableDns64:
+        type: boolean
+      EnableLniAtDeviceIndex:
+        type: integer
+      EnableResourceNameDnsAAAARecordOnLaunch:
+        type: boolean
+      EnableResourceNameDnsARecordOnLaunch:
+        type: boolean
+      MapCustomerOwnedIpOnLaunch:
+        type: boolean
+      MapPublicIpOnLaunch:
+        type: boolean
+      PrivateDnsHostnameTypeOnLaunch:
+        enum:
+        - ip-name
+        - resource-name
+        type: string
+      type:
+        enum:
+        - modify
+    required:
+    - type
+
+
+
+
+Permissions - ec2:ModifySubnetAttribute
 
 
 .. _aws.subnet.actions.set-flow-log:

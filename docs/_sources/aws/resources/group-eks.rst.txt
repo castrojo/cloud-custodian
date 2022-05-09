@@ -9,3 +9,5 @@ eks resources
 
 
    eks.rst
+
+   eks-nodegroup.rst

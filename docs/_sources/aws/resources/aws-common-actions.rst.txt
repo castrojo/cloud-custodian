@@ -21,6 +21,9 @@ Actions
    - :ref:`mark-for-op <AWS.common.actions.mark-for-op>`
 
 
+   - :ref:`modify-ecr-policy <AWS.common.actions.modify-ecr-policy>`
+
+
    - :ref:`modify-policy <AWS.common.actions.modify-policy>`
 
 
@@ -391,6 +394,126 @@ Tag resources for future action.
         - mark-for-op
       tz:
         type: string
+    required:
+    - type
+
+
+
+.. _AWS.common.actions.modify-ecr-policy:
+
+modify-ecr-policy
++++++++++++++++++
+
+Action to modify ECR policy statements.
+
+:example:
+
+.. code-block:: yaml
+
+       policies:
+          - name: ecr-image-prevent-pull
+            resource: ecr-image
+            filters:
+              - type: finding
+            actions:
+              - type: modify-ecr-policy
+                add-statements: [{
+                    "Sid": "ReplaceWithMe",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Action": ["ecr:BatchGetImage"]
+                        }]
+                remove-statements: "*"
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      add-statements:
+        items:
+          oneOf:
+          - required:
+            - Principal
+            - Action
+          - required:
+            - NotPrincipal
+            - Action
+          - required:
+            - Principal
+            - NotAction
+          - required:
+            - NotPrincipal
+            - NotAction
+          properties:
+            Action:
+              anyOf:
+              - pattern: ^ecr:[a-zA-Z]*$
+                type: string
+              - items:
+                  pattern: ^ecr:[a-zA-Z]*$
+                  type: string
+                type: array
+            Condition:
+              type: object
+            Effect:
+              enum:
+              - Allow
+              - Deny
+              type: string
+            NotAction:
+              anyOf:
+              - pattern: ^ecr:[a-zA-Z]*$
+                type: string
+              - items:
+                  pattern: ^ecr:[a-zA-Z]*$
+                  type: string
+                type: array
+            NotPrincipal:
+              anyOf:
+              - type: object
+              - type: array
+            NotResource:
+              anyOf:
+              - type: string
+              - type: array
+            Principal:
+              anyOf:
+              - type: string
+              - type: object
+              - type: array
+            Resource:
+              anyOf:
+              - type: string
+              - type: array
+            Sid:
+              type: string
+          required:
+          - Sid
+          - Effect
+          type: object
+        type: array
+      remove-statements:
+        oneOf:
+        - enum:
+          - matched
+          - '*'
+        - items:
+            type: string
+          type: array
+        type:
+        - array
+        - string
+      schema_alias: false
+      type:
+        enum:
+        - modify-ecr-policy
     required:
     - type
 
@@ -862,7 +985,7 @@ to post-findings, see Getting Started with :ref:`Security Hub <aws-securityhub>`
        - type: post-finding
          description: |
             Shield should be enabled on account to allow for DDOS protection (1 time 3k USD Charge).
-         severity_normalized: 6
+         severity_label: LOW
          types:
            - "Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA)"
          recommendation: "Enable shield"
@@ -883,7 +1006,7 @@ to post-findings, see Getting Started with :ref:`Security Hub <aws-securityhub>`
     properties:
       batch_size:
         default: 1
-        maximum: 10
+        maximum: 100
         minimum: 1
         type: integer
       compliance_status:

@@ -6,7 +6,13 @@ AWS Common Filters
 Filters
 
 
+   - :ref:`alarm <AWS.common.filters.alarm>`
+
+
    - :ref:`check-permissions <AWS.common.filters.check-permissions>`
+
+
+   - :ref:`client-properties <AWS.common.filters.client-properties>`
 
 
    - :ref:`config-compliance <AWS.common.filters.config-compliance>`
@@ -48,6 +54,9 @@ Filters
    - :ref:`ops-item <AWS.common.filters.ops-item>`
 
 
+   - :ref:`ownership <AWS.common.filters.ownership>`
+
+
    - :ref:`reduce <AWS.common.filters.reduce>`
 
 
@@ -60,10 +69,16 @@ Filters
    - :ref:`subnet <AWS.common.filters.subnet>`
 
 
+   - :ref:`subscription-filter <AWS.common.filters.subscription-filter>`
+
+
    - :ref:`tag-count <AWS.common.filters.tag-count>`
 
 
    - :ref:`usage <AWS.common.filters.usage>`
+
+
+   - :ref:`usage-metric <AWS.common.filters.usage-metric>`
 
 
    - :ref:`value <AWS.common.filters.value>`
@@ -71,6 +86,113 @@ Filters
 
    - :ref:`vpc <AWS.common.filters.vpc>`
 
+
+
+
+.. _AWS.common.filters.alarm:
+
+alarm
++++++
+
+Filter log metric filters based on associated alarms.
+
+:example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: log-metrics-with-alarms
+        resource: aws.log-metric
+        filters:
+          - type: alarm
+            key: AlarmName
+            value: present
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - alarm
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
 
 
 
@@ -89,12 +211,27 @@ Find users that can create other users
 
     policies:
       - name: super-users
-        resource: iam-user
+        resource: aws.iam-user
         filters:
           - type: check-permissions
             match: allowed
             actions:
              - iam:CreateUser
+
+:example:
+
+Find users with access to all services and actions
+
+.. code-block:: yaml
+
+    policies:
+      - name: admin-users
+        resource: aws.iam-user
+        filters:
+          - type: check-permissions
+            match: allowed
+            actions:
+              - '*:*'
 
 By default permission boundaries are checked.
 
@@ -132,6 +269,113 @@ By default permission boundaries are checked.
     required:
     - actions
     - match
+
+
+
+.. _AWS.common.filters.client-properties:
+
+client-properties
++++++++++++++++++
+
+Filter workspace directories based off workspace client properties.
+
+:example:
+
+.. code-block:: yaml
+
+   policies:
+     - name: workspace-client-credentials
+       resource: aws.workspaces-directory
+       filters:
+        - type: client-properties
+          key: ReconnectEnabled
+          value: ENABLED
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - client-properties
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
 
 
 
@@ -726,7 +970,7 @@ marked-for-op
 
 Filter resources for tag specified future action
 
-Filters resources by a 'custodian_status' tag which specifies a future
+Filters resources by a 'maid_status' tag which specifies a future
 date for an action.
 
 The filter parses the tag values looking for an 'op@date'
@@ -751,7 +995,7 @@ in which to interpret the clock (default value is 'utc')
       resource: ec2
       filters:
         - type: marked-for-op
-          # The default tag used is custodian_status
+          # The default tag used is maid_status
           # but that is configurable
           tag: custodian_status
           op: stop
@@ -1205,6 +1449,163 @@ Find ec2 instances with open ops items.
 
 
 
+.. _AWS.common.filters.ownership:
+
+ownership
++++++++++
+
+Filter for object ownership controls
+
+Reference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html
+
+:example
+
+Find buckets with ACLs disabled
+
+.. code-block:: yaml
+
+        policies:
+          - name: s3-bucket-acls-disabled
+            resource: aws.s3
+            region: us-east-1
+            filters:
+              - type: ownership
+                value: BucketOwnerEnforced
+
+:example
+
+Find buckets with object ownership preferred or enforced
+
+.. code-block:: yaml
+
+        policies:
+          - name: s3-bucket-ownership-preferred
+            resource: aws.s3
+            region: us-east-1
+            filters:
+              - type: ownership
+                op: in
+                value:
+                  - BucketOwnerEnforced
+                  - BucketOwnerPreferred
+
+:example
+
+Find buckets with no object ownership controls
+
+.. code-block:: yaml
+
+        policies:
+          - name: s3-bucket-no-ownership-controls
+            resource: aws.s3
+            region: us-east-1
+            filters:
+              - type: ownership
+                value: empty
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - ownership
+      value:
+        oneOf:
+        - enum:
+          - BucketOwnerEnforced
+          - BucketOwnerPreferred
+          - ObjectWriter
+          - absent
+          - present
+          - not-null
+          - empty
+          type: string
+        - items:
+            enum:
+            - BucketOwnerEnforced
+            - BucketOwnerPreferred
+            - ObjectWriter
+            - absent
+            - present
+            - not-null
+            - empty
+            type: string
+          type: array
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
 .. _AWS.common.filters.reduce:
 
 reduce
@@ -1593,6 +1994,113 @@ Filter a resource by its associated subnets.
 
 
 
+.. _AWS.common.filters.subscription-filter:
+
+subscription-filter
++++++++++++++++++++
+
+Filters CloudWatch log groups by subscriptions
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: cloudwatch-groups-with-subscriptions
+            resource: log-group
+            filters:
+              - type: subscription-filter
+                key: destinationArn
+                value: arn:aws:lambda:us-east-1:123456789876:function:forwarder
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - subscription-filter
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
 .. _AWS.common.filters.tag-count:
 
 tag-count
@@ -1769,6 +2277,50 @@ https://aws.amazon.com/blogs/security/automate-analyzing-permissions-using-iam-a
         - usage
     required:
     - match-operator
+
+
+
+.. _AWS.common.filters.usage-metric:
+
+usage-metric
+++++++++++++
+
+Filter service quotas by usage, only compatible with service quotas
+that return a UsageMetric attribute.
+
+Default limit is 80%
+
+.. code-block:: yaml
+
+    policies:
+        - name: service-quota-usage-limit
+          description: |
+              find any services that have usage stats of
+              over 80%
+          resource: aws.service-quota
+          filters:
+            - UsageMetric: present
+            - type: usage-metric
+              limit: 19
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      limit:
+        type: integer
+      type:
+        enum:
+        - usage-metric
+    required:
+    - type
 
 
 

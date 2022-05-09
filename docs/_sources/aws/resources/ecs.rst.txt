@@ -18,6 +18,8 @@ Filters
   
   - :ref:`finding <aws.common.filters.finding>`
   
+  - :ref:`json-diff <aws.ecs.filters.json-diff>`
+
   - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
   
   - :ref:`metrics <aws.common.filters.metrics>`
@@ -28,6 +30,50 @@ Filters
   
   - :ref:`value <aws.common.filters.value>`
   
+
+
+.. _aws.ecs.filters.json-diff:
+
+json-diff
++++++++++
+Compute the diff from the current resource to a previous version.
+
+A resource matches the filter if a diff exists between the current
+resource and the selected revision.
+
+Utilizes config as a resource revision database.
+
+Revisions can be selected by date, against the previous version, and
+against a locked version (requires use of is-locked filter).
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      selector:
+        enum:
+        - previous
+        - date
+        - locked
+      selector_value:
+        type: string
+      type:
+        enum:
+        - json-diff
+    required:
+    - type
+
+
+
+
+Permissions - config:GetResourceConfigHistory
 
 
 

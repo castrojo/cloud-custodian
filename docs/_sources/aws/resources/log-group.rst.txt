@@ -32,6 +32,8 @@ Filters
   
   - :ref:`reduce <aws.common.filters.reduce>`
   
+  - :ref:`subscription-filter <aws.common.filters.subscription-filter>`
+  
   - :ref:`tag-count <aws.common.filters.tag-count>`
   
   - :ref:`value <aws.common.filters.value>`

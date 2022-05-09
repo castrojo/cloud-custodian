@@ -8,6 +8,8 @@ apigateway resources
    :titlesonly:
 
 
+   apigw-domain-name.rst
+
    rest-account.rst
 
    rest-api.rst

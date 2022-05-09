@@ -122,7 +122,6 @@ Docs on cloud watch metrics
     filters:
     - type: metrics
       name: firewallinsights.googleapis.com/subnet/firewall_hit_count
-      resource-key: name
       aligner: ALIGN_COUNT
       days: 14
       value: 1
@@ -216,8 +215,6 @@ Docs on cloud watch metrics
         - REDUCE_PERCENTILE_95
         - REDUCE_PERCENTILE_50
         - REDUCE_PERCENTILE_05
-        type: string
-      resource-key:
         type: string
       type:
         enum:

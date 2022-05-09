@@ -12,6 +12,8 @@ Filters
 -------
 
 
+  - :ref:`check-secure-transport <aws.efs.filters.check-secure-transport>`
+
   - :ref:`config-compliance <aws.common.filters.config-compliance>`
   
   - :ref:`event <aws.common.filters.event>`
@@ -20,6 +22,8 @@ Filters
   
   - :ref:`health-event <aws.common.filters.health-event>`
   
+  - :ref:`json-diff <aws.efs.filters.json-diff>`
+
   - :ref:`kms-key <aws.efs.filters.kms-key>`
 
   - :ref:`lifecycle-policy <aws.efs.filters.lifecycle-policy>`
@@ -36,6 +40,103 @@ Filters
   
   - :ref:`value <aws.common.filters.value>`
   
+
+
+.. _aws.efs.filters.check-secure-transport:
+
+check-secure-transport
+++++++++++++++++++++++
+Find EFS that does not enforce secure transport
+
+:Example:
+
+.. code-block:: yaml
+
+ - name: efs-securetransport-check-policy
+   resource: efs
+   filters:
+     - check-secure-transport
+
+To configure an EFS to enforce secure transport, set up the appropriate
+Effect and Condition for its policy document. For example:
+
+.. code-block:: json
+
+    {
+        "Sid": "efs-statement-b3f6b59b-d938-4001-9154-508f67707073",
+        "Effect": "Deny",
+        "Principal": { "AWS": "*" },
+        "Action": "*",
+        "Condition": {
+            "Bool": { "aws:SecureTransport": "false" }
+        }
+    }
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - check-secure-transport
+    required:
+    - type
+
+
+
+
+Permissions - elasticfilesystem:DescribeFileSystemPolicy
+
+
+.. _aws.efs.filters.json-diff:
+
+json-diff
++++++++++
+Compute the diff from the current resource to a previous version.
+
+A resource matches the filter if a diff exists between the current
+resource and the selected revision.
+
+Utilizes config as a resource revision database.
+
+Revisions can be selected by date, against the previous version, and
+against a locked version (requires use of is-locked filter).
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      selector:
+        enum:
+        - previous
+        - date
+        - locked
+      selector_value:
+        type: string
+      type:
+        enum:
+        - json-diff
+    required:
+    - type
+
+
+
+
+Permissions - config:GetResourceConfigHistory
 
 
 .. _aws.efs.filters.kms-key:

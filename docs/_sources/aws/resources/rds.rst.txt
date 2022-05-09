@@ -15,6 +15,8 @@ Filters
 
   - :ref:`config-compliance <aws.common.filters.config-compliance>`
   
+  - :ref:`consecutive-snapshots <aws.rds.filters.consecutive-snapshots>`
+
   - :ref:`db-parameter <aws.rds.filters.db-parameter>`
 
   - :ref:`default-vpc <aws.rds.filters.default-vpc>`
@@ -55,6 +57,50 @@ Filters
   
   - :ref:`vpc <aws.common.filters.vpc>`
   
+
+
+.. _aws.rds.filters.consecutive-snapshots:
+
+consecutive-snapshots
++++++++++++++++++++++
+Returns instances where number of consective daily snapshots is equal to/or greater than n days.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: rds-daily-snapshot-count
+            resource: rds
+            filters:
+              - type: consecutive-snapshots
+                days: 7
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      days:
+        minimum: 1
+        type: number
+      type:
+        enum:
+        - consecutive-snapshots
+    required:
+    - days
+    - type
+
+
+
+
+Permissions - rds:DescribeDBSnapshots, rds:DescribeDBInstances
 
 
 .. _aws.rds.filters.db-parameter:

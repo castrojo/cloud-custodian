@@ -15,6 +15,8 @@ Filters
 
   - :ref:`config-compliance <aws.common.filters.config-compliance>`
   
+  - :ref:`consecutive-snapshots <aws.rds-cluster.filters.consecutive-snapshots>`
+
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -45,6 +47,51 @@ Filters
   
   - :ref:`value <aws.common.filters.value>`
   
+
+
+.. _aws.rds-cluster.filters.consecutive-snapshots:
+
+consecutive-snapshots
++++++++++++++++++++++
+Returns RDS clusters where number of consective daily snapshots is equal to/or greater
+ than n days.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: rdscluster-daily-snapshot-count
+            resource: rds-cluster
+            filters:
+              - type: consecutive-snapshots
+                days: 7
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      days:
+        minimum: 1
+        type: number
+      type:
+        enum:
+        - consecutive-snapshots
+    required:
+    - days
+    - type
+
+
+
+
+Permissions - rds:DescribeDBClusterSnapshots, rds:DescribeDBClusters
 
 
 .. _aws.rds-cluster.filters.json-diff:

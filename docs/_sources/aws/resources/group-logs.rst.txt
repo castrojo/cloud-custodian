@@ -9,3 +9,5 @@ logs resources
 
 
    log-group.rst
+
+   log-metric.rst

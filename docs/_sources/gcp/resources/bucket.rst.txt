@@ -14,6 +14,8 @@ Filters
 
   - :ref:`event <gcp.common.filters.event>`
   
+  - :ref:`iam-policy <gcp.bucket.filters.iam-policy>`
+
   - :ref:`metrics <gcp.bucket.filters.metrics>`
 
   - :ref:`reduce <gcp.common.filters.reduce>`
@@ -22,6 +24,124 @@ Filters
   
   - :ref:`value <gcp.common.filters.value>`
   
+
+
+.. _gcp.bucket.filters.iam-policy:
+
+iam-policy
+++++++++++
+Overrides the base implementation to process bucket resources correctly.
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      doc:
+        additionalProperties: false
+        properties:
+          default:
+            type: object
+          key:
+            type: string
+          op:
+            enum:
+            - eq
+            - equal
+            - ne
+            - not-equal
+            - gt
+            - greater-than
+            - ge
+            - gte
+            - le
+            - lte
+            - lt
+            - less-than
+            - glob
+            - regex
+            - regex-case
+            - in
+            - ni
+            - not-in
+            - contains
+            - difference
+            - intersect
+          type:
+            enum:
+            - value
+          value:
+            oneOf:
+            - type: array
+            - type: string
+            - type: boolean
+            - type: number
+            - type: 'null'
+          value_from:
+            additionalProperties: 'False'
+            properties:
+              expr:
+                oneOf:
+                - type: integer
+                - type: string
+              format:
+                enum:
+                - csv
+                - json
+                - txt
+                - csv2dict
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          value_regex:
+            type: string
+          value_type:
+            enum:
+            - age
+            - integer
+            - expiration
+            - normalize
+            - size
+            - cidr
+            - cidr_size
+            - swap
+            - resource_count
+            - expr
+            - unique_size
+            - date
+            - version
+        type: object
+      type:
+        enum:
+        - iam-policy
+      user-role:
+        additionalProperties: false
+        properties:
+          has:
+            type: boolean
+          role:
+            type: string
+          user:
+            type: string
+        required:
+        - user
+        - role
+        type: object
+    required:
+    - type
+
+
+
+
+Permissions - storage.buckets.getIamPolicy
 
 
 .. _gcp.bucket.filters.metrics:
@@ -47,7 +167,6 @@ Docs on cloud watch metrics
     filters:
     - type: metrics
       name: firewallinsights.googleapis.com/subnet/firewall_hit_count
-      resource-key: name
       aligner: ALIGN_COUNT
       days: 14
       value: 1
@@ -141,8 +260,6 @@ Docs on cloud watch metrics
         - REDUCE_PERCENTILE_95
         - REDUCE_PERCENTILE_50
         - REDUCE_PERCENTILE_05
-        type: string
-      resource-key:
         type: string
       type:
         enum:

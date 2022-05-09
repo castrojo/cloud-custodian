@@ -16,6 +16,8 @@ Filters
   
   - :ref:`event <aws.common.filters.event>`
   
+  - :ref:`event-selectors <aws.cloudtrail.filters.event-selectors>`
+
   - :ref:`finding <aws.common.filters.finding>`
   
   - :ref:`is-shadow <aws.cloudtrail.filters.is-shadow>`
@@ -32,6 +34,117 @@ Filters
 
   - :ref:`value <aws.common.filters.value>`
   
+
+
+.. _aws.cloudtrail.filters.event-selectors:
+
+event-selectors
++++++++++++++++
+Filter a cloudtrail by its related Event Selectors.
+
+:example:
+
+.. code-block:: yaml
+
+  policies:
+    - name: cloudtrail-event-selectors
+      resource: aws.cloudtrail
+      filters:
+      - type: event-selectors
+        key: EventSelectors[].IncludeManagementEvents
+        op: contains
+        value: True
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - event-selectors
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
+
+Permissions - cloudtrail:GetEventSelectors
 
 
 .. _aws.cloudtrail.filters.is-shadow:

@@ -320,7 +320,50 @@ Actions
   
   - :ref:`tag <aws.common.actions.tag>`
   
+  - :ref:`terminate <aws.workspaces.actions.terminate>`
+
   - :ref:`webhook <aws.common.actions.webhook>`
   
 
+
+
+.. _aws.workspaces.actions.terminate:
+
+terminate
++++++++++
+Terminates a Workspace
+
+:example:
+
+.. code-block:: yaml
+
+  policies:
+    - name: delete-workspace
+      resource: workspaces
+      filters:
+        - "tag:DeleteMe": present
+      actions:
+        - terminate
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - terminate
+    required:
+    - type
+
+
+
+
+Permissions - workspaces:TerminateWorkspaces
 

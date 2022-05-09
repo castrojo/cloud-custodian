@@ -883,15 +883,32 @@ Action to set the ELB SSL listener policy
 .. code-block:: yaml
 
         policies:
-          - name: elb-set-listener-policy
+          - name: elb-set-listener-custom-policy
             resource: elb
             actions:
               - type: set-ssl-listener-policy
-                name: SSLNegotiation-Policy-01
+                name: SSLNegotiation-Custom-Policy-01
                 attributes:
                   - Protocol-SSLv3
                   - Protocol-TLSv1.1
                   - DHE-RSA-AES256-SHA256
+
+
+Alternatively, you can specify one of AWS recommended policies
+(https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)
+by specifying an attribute where key=Reference-Security-Policy
+and value=name of the predefined policy. For example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: elb-set-listener-predefined-policy
+            resource: elb
+            actions:
+              - type: set-ssl-listener-policy
+                name: SSLNegotiation-Predefined-Policy-01
+                attributes:
+                  Reference-Security-Policy: ELBSecurityPolicy-TLS-1-2-2017-01
 
 .. container:: toggle
 
@@ -905,9 +922,11 @@ Action to set the ELB SSL listener policy
 
     properties:
       attributes:
-        items:
-          type: string
-        type: array
+        anyOf:
+        - type: object
+        - items:
+            type: string
+          type: array
       name:
         type: string
       type:

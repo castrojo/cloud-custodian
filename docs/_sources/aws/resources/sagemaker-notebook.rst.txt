@@ -22,6 +22,10 @@ Filters
 
   - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
   
+  - :ref:`offhour <aws.common.filters.offhour>`
+  
+  - :ref:`onhour <aws.common.filters.onhour>`
+  
   - :ref:`ops-item <aws.common.filters.ops-item>`
   
   - :ref:`reduce <aws.common.filters.reduce>`

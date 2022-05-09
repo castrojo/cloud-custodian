@@ -184,6 +184,13 @@ Finding updates are not currently supported, due to upstream api issues.
         type: string
       org-id:
         type: integer
+      severity:
+        enum:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - SEVERITY_UNSPECIFIED
+        type: string
       source:
         description: qualified name of source to post to CSCC as
         type: string

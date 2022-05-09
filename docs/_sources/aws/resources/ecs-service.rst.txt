@@ -24,6 +24,10 @@ Filters
   
   - :ref:`metrics <aws.common.filters.metrics>`
   
+  - :ref:`offhour <aws.common.filters.offhour>`
+  
+  - :ref:`onhour <aws.common.filters.onhour>`
+  
   - :ref:`ops-item <aws.common.filters.ops-item>`
   
   - :ref:`reduce <aws.common.filters.reduce>`
@@ -272,6 +276,8 @@ Actions
   
   - :ref:`remove-tag <aws.common.actions.remove-tag>`
   
+  - :ref:`resize <aws.ecs-service.actions.resize>`
+
   - :ref:`tag <aws.common.actions.tag>`
   
   - :ref:`webhook <aws.common.actions.webhook>`
@@ -389,4 +395,90 @@ Action to update service
 
 
 Permissions - ecs:UpdateService
+
+
+.. _aws.ecs-service.actions.resize:
+
+resize
+++++++
+Action to resize the min/max/desired count in an application autoscaling target
+
+There are several ways to use this action:
+
+1. apply a fixed resize of min, max or desired, optionally saving the
+   previous values to a named tag (for restoring later):
+
+.. code-block:: yaml
+
+        policies:
+          - name: offhours-ecs-off
+            resource: ecs-service
+            filters:
+              - type: offhour
+                offhour: 19
+                default_tz: bst
+            actions:
+              - type: resize
+                min-capacity: 0
+                desired: 0
+                save-options-tag: OffHoursPrevious
+                suspend-scaling: true
+
+2. restore previous values for min/max/desired from a tag:
+
+.. code-block:: yaml
+
+        policies:
+          - name: offhours-ecs-on
+            resource: ecs-service
+            filters:
+              - type: onhour
+                onhour: 8
+                default_tz: bst
+            actions:
+              - type: resize
+                restore-options-tag: OffHoursPrevious
+                restore-scaling: true
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      desired:
+        anyOf:
+        - enum:
+          - current
+        - minimum: 0
+          type: integer
+      max-capacity:
+        minimum: 0
+        type: integer
+      min-capacity:
+        minimum: 0
+        type: integer
+      restore-options-tag:
+        type: string
+      restore-scaling:
+        type: boolean
+      save-options-tag:
+        type: string
+      suspend-scaling:
+        type: boolean
+      type:
+        enum:
+        - resize
+    required:
+    - type
+
+
+
+
+Permissions - ecs:UpdateService, ecs:TagResource, ecs:UntagResource
 

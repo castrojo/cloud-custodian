@@ -22,6 +22,8 @@ ec2 resources
 
    ec2-reserved.rst
 
+   ec2-spot-fleet-request.rst
+
    elastic-ip.rst
 
    eni.rst
@@ -32,11 +34,17 @@ ec2 resources
 
    launch-template-version.rst
 
+   mirror-session.rst
+
+   mirror-target.rst
+
    nat-gateway.rst
 
    network-acl.rst
 
    peering-connection.rst
+
+   prefix-list.rst
 
    route-table.rst
 

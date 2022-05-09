@@ -9,3 +9,7 @@ workspaces resources
 
 
    workspaces.rst
+
+   workspaces-directory.rst
+
+   workspaces-image.rst

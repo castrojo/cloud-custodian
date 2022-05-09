@@ -178,6 +178,8 @@ Actions
   
   - :ref:`tag <aws.common.actions.tag>`
   
+  - :ref:`toggle-metrics <aws.glue-job.actions.toggle-metrics>`
+
   - :ref:`webhook <aws.common.actions.webhook>`
   
 
@@ -211,4 +213,51 @@ Parent base class for filters and actions.
 
 
 Permissions - glue:DeleteJob
+
+
+.. _aws.glue-job.actions.toggle-metrics:
+
+toggle-metrics
+++++++++++++++
+Enable or disable CloudWatch metrics for a Glue job
+
+:example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: gluejob-enable-metrics
+        resource: glue-job
+        filters:
+          - type: value
+            key: 'DefaultArguments."--enable-metrics"'
+            value: absent
+        actions:
+          - type: toggle-metrics
+            enabled: true
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      enabled:
+        type: boolean
+      type:
+        enum:
+        - toggle-metrics
+    required:
+    - enabled
+    - type
+
+
+
+
+Permissions - glue:UpdateJob
 

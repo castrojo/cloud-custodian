@@ -20,6 +20,8 @@ Filters
   
   - :ref:`kms-key <aws.elasticache-group.filters.kms-key>`
 
+  - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
+  
   - :ref:`metrics <aws.common.filters.metrics>`
   
   - :ref:`ops-item <aws.common.filters.ops-item>`
@@ -169,11 +171,17 @@ Actions
 -------
 
 
+  - :ref:`auto-tag-user <aws.common.actions.auto-tag-user>`
+  
+  - :ref:`copy-related-tag <aws.common.actions.copy-related-tag>`
+  
   - :ref:`delete <aws.elasticache-group.actions.delete>`
 
   - :ref:`invoke-lambda <aws.common.actions.invoke-lambda>`
   
   - :ref:`invoke-sfn <aws.common.actions.invoke-sfn>`
+  
+  - :ref:`mark-for-op <aws.common.actions.mark-for-op>`
   
   - :ref:`notify <aws.common.actions.notify>`
   
@@ -182,6 +190,10 @@ Actions
   - :ref:`post-item <aws.common.actions.post-item>`
   
   - :ref:`put-metric <aws.common.actions.put-metric>`
+  
+  - :ref:`remove-tag <aws.common.actions.remove-tag>`
+  
+  - :ref:`tag <aws.common.actions.tag>`
   
   - :ref:`webhook <aws.common.actions.webhook>`
   
