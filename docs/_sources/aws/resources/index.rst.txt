@@ -66,6 +66,8 @@ be applies for all resources.
 
    group-config.rst
 
+   group-connect.rst
+
    group-datapipeline.rst
 
    group-dax.rst
@@ -107,6 +109,8 @@ be applies for all resources.
    group-events.rst
 
    group-firehose.rst
+
+   group-fis.rst
 
    group-fsx.rst
 
@@ -199,5 +203,7 @@ be applies for all resources.
    group-waf.rst
 
    group-waf-regional.rst
+
+   group-wafv2.rst
 
    group-workspaces.rst

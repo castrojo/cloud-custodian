@@ -18,8 +18,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/js/expand.js"></script>
-        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -278,11 +276,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#check-permissions">check-permissions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#client-properties">client-properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#config-compliance">config-compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#connection-aliases">connection-aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#domain-options">domain-options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#engine">engine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#event">event</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#finding">finding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#health-event">health-event</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#iam-analyzer">iam-analyzer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#image">image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#instance-attribute">instance-attribute</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#logging">logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#marked-for-op">marked-for-op</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#metrics">metrics</a></li>
@@ -578,6 +580,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/config-rule.html">aws.config-rule</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/config-rule.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/config-rule.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-connect.html">connect resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/connect-instance.html">aws.connect-instance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/connect-instance.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/connect-instance.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -971,6 +981,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/firehose.html">aws.firehose</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/firehose.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/firehose.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-fis.html">fis resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/fis-template.html">aws.fis-template</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/fis-template.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/fis-template.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -1609,6 +1627,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/waf-regional.html">aws.waf-regional</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/waf-regional.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/waf-regional.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-wafv2.html">wafv2 resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/wafv2.html">aws.wafv2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/wafv2.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/wafv2.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -5205,6 +5231,7 @@
 <li class="toctree-l3"><a class="reference internal" href="c7n-mailer.html#secured-string">Secured String</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="c7n-mailer.html#aws">AWS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="c7n-mailer.html#azure">Azure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="c7n-mailer.html#gcp">GCP</a></li>
 </ul>
 </li>
 </ul>
@@ -5213,6 +5240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="c7n-mailer.html#using-on-azure">Using on Azure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="c7n-mailer.html#deploying-azure-functions">Deploying Azure Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="c7n-mailer.html#configuring-function-identity">Configuring Function Identity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c7n-mailer.html#using-on-gcp">Using on GCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c7n-mailer.html#deploying-gcp-functions">Deploying GCP Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="c7n-mailer.html#writing-an-email-template">Writing an email template</a></li>
@@ -5284,13 +5315,18 @@
 <li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#install-python-3">Install Python 3</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-ubuntu">On Ubuntu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-macos-with-homebrew">On macOS with Homebrew</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-windows">On Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#other-installation-methods">Other Installation Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#basic-python-tools">Basic Python Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#install-poetry">Install Poetry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-mac-linux">On Mac/Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-windows-with-powershell">On Windows with Powershell</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../developer/installing.html#installing-custodian">Installing Custodian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer/installing.html#installing-in-your-own-virtual-environment">Installing in Your Own Virtual Environment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/tests.html">Testing for Developers</a><ul>
@@ -5344,7 +5380,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="c7n-log-exporter-cloud-watch-log-exporter-automation">
+  <section id="c7n-log-exporter-cloud-watch-log-exporter-automation">
 <h1>c7n-log-exporter: Cloud watch log exporter automation<a class="headerlink" href="#c7n-log-exporter-cloud-watch-log-exporter-automation" title="Permalink to this headline">¶</a></h1>
 <p>A small serverless app to archive cloud logs across accounts to an archive bucket. It utilizes
 cloud log export to s3 feature for historical exports.</p>
@@ -5359,7 +5395,7 @@ as the periodic historical exports.</p>
 <li><p>Cross account via sts role assume</p></li>
 <li><p>Lambda and CLI support.</p></li>
 <li><p>Day based log segmentation (output keys look
-like <span class="math notranslate nohighlight">\(prefix/\)</span>account_id/<span class="math notranslate nohighlight">\(group/\)</span>year/<span class="math notranslate nohighlight">\(month/\)</span>day/<span class="math notranslate nohighlight">\(export_task_uuid/\)</span>stream/$log)</p></li>
+like $prefix/$account_id/$group/$year/$month/$day/$export_task_uuid/$stream/$log)</p></li>
 </ul>
 </section>
 <section id="assumptions">
@@ -5417,6 +5453,8 @@ source account access to the Cloudwatch Destination</p>
 
 <span class="n">accounts</span><span class="p">:</span>
   <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">custodian</span><span class="o">-</span><span class="n">demo</span>
+    <span class="c1"># https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CreateSubscriptionFilter-IAMrole.html</span>
+    <span class="n">subscription</span><span class="o">-</span><span class="n">role</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::111111111111:role/&lt;role-name&gt;&quot;</span>
     <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::111111111111:role/CloudCustodianRole&quot;</span>
     <span class="n">groups</span><span class="p">:</span>
       <span class="o">-</span> <span class="s2">&quot;/aws/lambda/*&quot;</span>

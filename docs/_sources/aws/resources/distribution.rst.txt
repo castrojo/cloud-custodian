@@ -42,6 +42,8 @@ Filters
   
   - :ref:`waf-enabled <aws.distribution.filters.waf-enabled>`
 
+  - :ref:`wafv2-enabled <aws.distribution.filters.wafv2-enabled>`
+
 
 
 .. _aws.distribution.filters.distribution-config:
@@ -277,8 +279,19 @@ Permissions - shield:ListProtections
 
 waf-enabled
 +++++++++++
-Parent base class for filters and actions.
-    
+Filter CloudFront distribution by waf-regional web-acl
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: filter-distribution-waf
+            resource: distribution
+            filters:
+              - type: waf-enabled
+                state: false
+                web-acl: test
 
 .. container:: toggle
 
@@ -305,6 +318,51 @@ Parent base class for filters and actions.
 
 
 Permissions - waf:ListWebACLs
+
+
+.. _aws.distribution.filters.wafv2-enabled:
+
+wafv2-enabled
++++++++++++++
+Filter CloudFront distribution by wafv2 web-acl
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: filter-distribution-wafv2
+            resource: distribution
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: testv2
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        type: boolean
+      type:
+        enum:
+        - wafv2-enabled
+      web-acl:
+        type: string
+    required:
+    - type
+
+
+
+
+Permissions - wafv2:ListWebACLs
 
 
 
@@ -342,6 +400,8 @@ Actions
   - :ref:`set-shield <aws.distribution.actions.set-shield>`
 
   - :ref:`set-waf <aws.distribution.actions.set-waf>`
+
+  - :ref:`set-wafv2 <aws.distribution.actions.set-wafv2>`
 
   - :ref:`tag <aws.common.actions.tag>`
   
@@ -548,8 +608,35 @@ Permissions - shield:CreateProtection, shield:ListProtections
 
 set-waf
 +++++++
-Parent base class for filters and actions.
-    
+Enable waf protection on CloudFront distribution.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: set-waf-for-cloudfront
+            resource: distribution
+            filters:
+              - type: waf-enabled
+                state: false
+                web-acl: test
+            actions:
+              - type: set-waf
+                state: true
+                force: true
+                web-acl: test
+
+          - name: disassociate-waf-associate-wafv2-cf
+            resource: distribution
+            filters:
+              - type: waf-enabled
+                state: true
+            actions:
+              - type: set-wafv2
+                state: true
+                force: true
+                web-acl: testv2
 
 .. container:: toggle
 
@@ -579,4 +666,68 @@ Parent base class for filters and actions.
 
 
 Permissions - cloudfront:UpdateDistribution, waf:ListWebACLs
+
+
+.. _aws.distribution.actions.set-wafv2:
+
+set-wafv2
++++++++++
+Enable wafv2 protection on CloudFront distribution.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: set-wafv2-for-cloudfront
+            resource: distribution
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: testv2
+            actions:
+              - type: set-wafv2
+                state: true
+                force: true
+                web-acl: testv2
+
+          - name: disassociate-wafv2-associate-waf-cf
+            resource: distribution
+            filters:
+              - type: wafv2-enabled
+                state: true
+            actions:
+              - type: set-waf
+                state: true
+                force: true
+                web-acl: test
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      force:
+        type: boolean
+      state:
+        type: boolean
+      type:
+        enum:
+        - set-wafv2
+      web-acl:
+        type: string
+    required:
+    - web-acl
+    - type
+
+
+
+
+Permissions - cloudfront:UpdateDistribution, wafv2:ListWebACLs
 

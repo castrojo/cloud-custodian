@@ -18,6 +18,15 @@ Filters
    - :ref:`config-compliance <AWS.common.filters.config-compliance>`
 
 
+   - :ref:`connection-aliases <AWS.common.filters.connection-aliases>`
+
+
+   - :ref:`domain-options <AWS.common.filters.domain-options>`
+
+
+   - :ref:`engine <AWS.common.filters.engine>`
+
+
    - :ref:`event <AWS.common.filters.event>`
 
 
@@ -31,6 +40,9 @@ Filters
 
 
    - :ref:`image <AWS.common.filters.image>`
+
+
+   - :ref:`instance-attribute <AWS.common.filters.instance-attribute>`
 
 
    - :ref:`logging <AWS.common.filters.logging>`
@@ -453,6 +465,327 @@ rules see https://cloudcustodian.io/docs/policy/lambda.html#config-rules
 
 
 
+.. _AWS.common.filters.connection-aliases:
+
+connection-aliases
+++++++++++++++++++
+
+Filter workspace directories based on connection aliases
+
+:example:
+
+.. code-block:: yaml
+
+   policies:
+     - name: workspace-connection-alias
+       resource: aws.workspaces-directory
+       filters:
+        - type: connection-aliases
+          key: 'ConnectionAliases'
+          value: 'empty'
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - connection-aliases
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
+.. _AWS.common.filters.domain-options:
+
+domain-options
+++++++++++++++
+
+Filter for cloud search domains by their domain options.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: cloudsearch-detect-https
+            resource: cloudsearch
+            filters:
+              - type: domain-options
+                key: Options.EnforceHTTPS
+                value: false
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - domain-options
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
+.. _AWS.common.filters.engine:
+
+engine
+++++++
+
+Filter a rds resource based on its Engine Metadata
+
+:example:
+
+.. code-block:: yaml
+
+    policies:
+        - name: find-deprecated-versions
+          resource: aws.rds
+          filters:
+            - type: engine
+              key: Status
+              value: deprecated
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - engine
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
 .. _AWS.common.filters.event:
 
 event
@@ -844,6 +1177,118 @@ Filter asg by image
         - date
         - version
     required:
+    - type
+
+
+
+.. _AWS.common.filters.instance-attribute:
+
+instance-attribute
+++++++++++++++++++
+
+Filter Connect resources based on instance attributes
+
+    :example:
+
+.. code-block:: yaml
+
+        policies:
+
+          - name: connect-instance-attribute
+            resource: connect-instance
+            filters:
+              - type: instance-attribute
+                key: Attribute.Value
+                value: true
+                attribute_type: CONTACT_LENS
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      attribute_type:
+        type: string
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - instance-attribute
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - attribute_type
     - type
 
 
@@ -1898,7 +2343,41 @@ Specialized metrics filter for shield
 subnet
 ++++++
 
-Filter a resource by its associated subnets.
+Filter a resource by its associated subnets attributes.
+
+This filter is generally available for network attached resources.
+
+ie. to find lambda functions that are vpc attached to subnets with
+a tag key Location and value Database.
+
+:example:
+
+.. code-block:: yaml
+
+  policies:
+    - name: lambda
+      resource: aws.lambda
+      filters:
+        - type: subnet
+          key: tag:Location
+          value: Database
+
+It also supports finding resources on public or private subnets
+via route table introspection to determine if the subnet is
+associated to an internet gateway.
+
+:example:
+
+.. code-block:: yaml
+
+  policies:
+     - name: public-ec2
+       resource: aws.ec2
+       filters:
+         - type: subnet
+           igw: True
+           key: SubnetId
+           value: present
 
 .. container:: toggle
 
@@ -1913,6 +2392,10 @@ Filter a resource by its associated subnets.
     properties:
       default:
         type: object
+      igw:
+        enum:
+        - true
+        - false
       key:
         type: string
       match-resource:

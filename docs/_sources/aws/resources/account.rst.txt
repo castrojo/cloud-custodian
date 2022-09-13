@@ -20,6 +20,8 @@ Filters
 
   - :ref:`check-macie <aws.account.filters.check-macie>`
 
+  - :ref:`config-compliance <aws.common.filters.config-compliance>`
+  
   - :ref:`credential <aws.account.filters.credential>`
 
   - :ref:`default-ebs-encryption <aws.account.filters.default-ebs-encryption>`
@@ -37,6 +39,8 @@ Filters
   - :ref:`has-virtual-mfa <aws.account.filters.has-virtual-mfa>`
 
   - :ref:`iam-summary <aws.account.filters.iam-summary>`
+
+  - :ref:`lakeformation-s3-cross-account <aws.account.filters.lakeformation-s3-cross-account>`
 
   - :ref:`missing <aws.account.filters.missing>`
 
@@ -1003,6 +1007,114 @@ enabled with root mfa or has root api keys.
 
 
 Permissions - iam:GetAccountSummary
+
+
+.. _aws.account.filters.lakeformation-s3-cross-account:
+
+lakeformation-s3-cross-account
+++++++++++++++++++++++++++++++
+Flags an account if its using a lakeformation s3 bucket resource from a different account.
+
+:example:
+
+.. code-block:: yaml
+
+   policies:
+     - name: lakeformation-cross-account-bucket
+       resource: aws.account
+       filters:
+        - type: lakeformation-s3-cross-account
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - lakeformation-s3-cross-account
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
+
+Permissions - lakeformation:ListResources
 
 
 .. _aws.account.filters.missing:

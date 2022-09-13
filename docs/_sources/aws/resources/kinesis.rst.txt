@@ -254,8 +254,26 @@ Actions
 
 delete
 ++++++
-Parent base class for filters and actions.
-    
+Delete a set of kinesis streams.
+
+Additionally, if we're configured with 'force', we will remove
+all existing consumers before deleting the stream itself. For
+'force' to work, we would require the
+`kinesis:DeregisterStreamConsumer` permission as well.
+
+:Example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: kinesis-stream-deletion
+        resource: kinesis
+        filters:
+          - type: marked-for-op
+            op: delete
+        actions:
+          - type: delete
+            force: true
 
 .. container:: toggle
 
@@ -268,6 +286,8 @@ Parent base class for filters and actions.
   .. code-block:: yaml
 
     properties:
+      force:
+        type: boolean
       type:
         enum:
         - delete

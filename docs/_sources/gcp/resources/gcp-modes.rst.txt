@@ -115,6 +115,8 @@ at user defined cron interval via Pub/Sub.
 Default region the function is deployed to is ``us-central1``. In
 case you want to change that, use the cli ``--region`` flag.
 
+`target-type`: `pubsub` is recommended
+
 .. container:: toggle
 
   

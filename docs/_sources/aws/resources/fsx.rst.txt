@@ -14,6 +14,8 @@ Filters
 
   - :ref:`config-compliance <aws.common.filters.config-compliance>`
   
+  - :ref:`consecutive-backups <aws.fsx.filters.consecutive-backups>`
+
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -26,8 +28,53 @@ Filters
   
   - :ref:`reduce <aws.common.filters.reduce>`
   
+  - :ref:`subnet <aws.common.filters.subnet>`
+  
   - :ref:`value <aws.common.filters.value>`
   
+
+
+.. _aws.fsx.filters.consecutive-backups:
+
+consecutive-backups
++++++++++++++++++++
+Returns consecutive daily FSx backups, which are equal to/or greater than n days.
+:Example:
+.. code-block:: yaml
+        policies:
+          - name: fsx-daily-backup-count
+            resource: fsx
+            filters:
+              - type: consecutive-backups
+                days: 5
+            actions:
+              - notify
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      days:
+        minimum: 1
+        type: number
+      type:
+        enum:
+        - consecutive-backups
+    required:
+    - days
+    - type
+
+
+
+
+Permissions - fsx:DescribeBackups, fsx:DescribeVolumes
 
 
 .. _aws.fsx.filters.kms-key:

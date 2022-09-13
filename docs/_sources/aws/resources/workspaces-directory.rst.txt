@@ -14,6 +14,8 @@ Filters
 
   - :ref:`client-properties <aws.common.filters.client-properties>`
   
+  - :ref:`connection-aliases <aws.common.filters.connection-aliases>`
+  
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -44,6 +46,8 @@ Actions
   
   - :ref:`copy-related-tag <aws.common.actions.copy-related-tag>`
   
+  - :ref:`deregister <aws.workspaces-directory.actions.deregister>`
+
   - :ref:`invoke-lambda <aws.common.actions.invoke-lambda>`
   
   - :ref:`invoke-sfn <aws.common.actions.invoke-sfn>`
@@ -67,6 +71,47 @@ Actions
   - :ref:`webhook <aws.common.actions.webhook>`
   
 
+
+
+.. _aws.workspaces-directory.actions.deregister:
+
+deregister
+++++++++++
+Deregisters a workspace
+
+:example:
+
+.. code-block:: yaml
+
+  policies:
+    - name: deregister-workspace
+      resource: aws.workspaces-directory
+      filters:
+        - "tag:Deregister": present
+      actions:
+        - deregister
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - deregister
+    required:
+    - type
+
+
+
+
+Permissions - workspaces:DeregisterWorkspaceDirectory
 
 
 .. _aws.workspaces-directory.actions.modify-client-properties:

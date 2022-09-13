@@ -16,6 +16,8 @@ Filters
   
   - :ref:`cross-account <aws.elasticsearch.filters.cross-account>`
 
+  - :ref:`cross-cluster <aws.elasticsearch.filters.cross-cluster>`
+
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -177,6 +179,211 @@ Filter to return all elasticsearch domains with cross account access permissions
 
 
 Permissions - es:DescribeElasticsearchDomainConfig
+
+
+.. _aws.elasticsearch.filters.cross-cluster:
+
+cross-cluster
++++++++++++++
+Filter to return all elasticsearch domains with inbound cross-cluster with the given info
+
+:example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: check-elasticsearch-cross-cluster
+        resource: aws.elasticsearch
+        filters:
+          - type: cross-cluster
+            inbound:
+                key: SourceDomainInfo.OwnerId
+                op: eq
+                value: '123456789'
+            outbound:
+                key: SourceDomainInfo.OwnerId
+                op: eq
+                value: '123456789'
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      inbound:
+        additionalProperties: false
+        properties:
+          default:
+            type: object
+          key:
+            type: string
+          op:
+            enum:
+            - eq
+            - equal
+            - ne
+            - not-equal
+            - gt
+            - greater-than
+            - ge
+            - gte
+            - le
+            - lte
+            - lt
+            - less-than
+            - glob
+            - regex
+            - regex-case
+            - in
+            - ni
+            - not-in
+            - contains
+            - difference
+            - intersect
+          type:
+            enum:
+            - inbound
+          value:
+            oneOf:
+            - type: array
+            - type: string
+            - type: boolean
+            - type: number
+            - type: 'null'
+          value_from:
+            additionalProperties: 'False'
+            properties:
+              expr:
+                oneOf:
+                - type: integer
+                - type: string
+              format:
+                enum:
+                - csv
+                - json
+                - txt
+                - csv2dict
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          value_regex:
+            type: string
+          value_type:
+            enum:
+            - age
+            - integer
+            - expiration
+            - normalize
+            - size
+            - cidr
+            - cidr_size
+            - swap
+            - resource_count
+            - expr
+            - unique_size
+            - date
+            - version
+        required:
+        - key
+        - value
+        type: object
+      outbound:
+        additionalProperties: false
+        properties:
+          default:
+            type: object
+          key:
+            type: string
+          op:
+            enum:
+            - eq
+            - equal
+            - ne
+            - not-equal
+            - gt
+            - greater-than
+            - ge
+            - gte
+            - le
+            - lte
+            - lt
+            - less-than
+            - glob
+            - regex
+            - regex-case
+            - in
+            - ni
+            - not-in
+            - contains
+            - difference
+            - intersect
+          type:
+            enum:
+            - outbound
+          value:
+            oneOf:
+            - type: array
+            - type: string
+            - type: boolean
+            - type: number
+            - type: 'null'
+          value_from:
+            additionalProperties: 'False'
+            properties:
+              expr:
+                oneOf:
+                - type: integer
+                - type: string
+              format:
+                enum:
+                - csv
+                - json
+                - txt
+                - csv2dict
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          value_regex:
+            type: string
+          value_type:
+            enum:
+            - age
+            - integer
+            - expiration
+            - normalize
+            - size
+            - cidr
+            - cidr_size
+            - swap
+            - resource_count
+            - expr
+            - unique_size
+            - date
+            - version
+        required:
+        - key
+        - value
+        type: object
+      type:
+        enum:
+        - cross-cluster
+    required:
+    - type
+
+
+
+
+Permissions - es:ESCrossClusterGet
 
 
 .. _aws.elasticsearch.filters.json-diff:

@@ -276,11 +276,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#check-permissions">check-permissions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#client-properties">client-properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#config-compliance">config-compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#connection-aliases">connection-aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#domain-options">domain-options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#engine">engine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#event">event</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#finding">finding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#health-event">health-event</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#iam-analyzer">iam-analyzer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#image">image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#instance-attribute">instance-attribute</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#logging">logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#marked-for-op">marked-for-op</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#metrics">metrics</a></li>
@@ -576,6 +580,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/config-rule.html">aws.config-rule</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/config-rule.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/config-rule.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-connect.html">connect resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/connect-instance.html">aws.connect-instance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/connect-instance.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/connect-instance.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -969,6 +981,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/firehose.html">aws.firehose</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/firehose.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/firehose.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-fis.html">fis resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/fis-template.html">aws.fis-template</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/fis-template.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/fis-template.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -1607,6 +1627,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/waf-regional.html">aws.waf-regional</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/waf-regional.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/waf-regional.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-wafv2.html">wafv2 resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/wafv2.html">aws.wafv2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/wafv2.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/wafv2.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -5203,6 +5231,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#secured-string">Secured String</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#aws">AWS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#azure">Azure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gcp">GCP</a></li>
 </ul>
 </li>
 </ul>
@@ -5211,6 +5240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#using-on-azure">Using on Azure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#deploying-azure-functions">Deploying Azure Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-function-identity">Configuring Function Identity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-on-gcp">Using on GCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-gcp-functions">Deploying GCP Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#writing-an-email-template">Writing an email template</a></li>
@@ -5282,13 +5315,18 @@
 <li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#install-python-3">Install Python 3</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-ubuntu">On Ubuntu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-macos-with-homebrew">On macOS with Homebrew</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-windows">On Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#other-installation-methods">Other Installation Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#basic-python-tools">Basic Python Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../developer/installing.html#install-poetry">Install Poetry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-mac-linux">On Mac/Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../developer/installing.html#on-windows-with-powershell">On Windows with Powershell</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../developer/installing.html#installing-custodian">Installing Custodian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer/installing.html#installing-in-your-own-virtual-environment">Installing in Your Own Virtual Environment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/tests.html">Testing for Developers</a><ul>
@@ -5342,7 +5380,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="c7n-mailer-custodian-mailer">
+  <section id="c7n-mailer-custodian-mailer">
 <h1>c7n-mailer: Custodian Mailer<a class="headerlink" href="#c7n-mailer-custodian-mailer" title="Permalink to this headline">¶</a></h1>
 <p>A mailer implementation for Custodian. Outbound mail delivery is still somewhat
 organization-specific, so this at the moment serves primarily as an example
@@ -5360,8 +5398,8 @@ should be cross-account enabled for sending between accounts.</p>
 <h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
 <p>Our goal in starting out with the Custodian mailer is to install the mailer,
 and run a policy that triggers an email to your inbox.</p>
-<ol class="simple">
-<li><p><a class="reference external" href="#developer-install-os-x-el-capitan">Install</a> the mailer on your laptop (if you are not running as a <a class="reference external" href="https://hub.docker.com/r/cloudcustodian/mailer">Docker container</a></p>
+<ol class="arabic simple">
+<li><p><span class="xref myst">Install</span> the mailer on your laptop (if you are not running as a <a class="reference external" href="https://hub.docker.com/r/cloudcustodian/mailer">Docker container</a></p>
 <ul class="simple">
 <li><p>or use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">c7n-mailer</span></code></p></li>
 </ul>
@@ -5420,7 +5458,7 @@ environment)</p>
 c7n integration with AWS CloudWatch and use the
 <a class="reference external" href="https://docs.datadoghq.com/integrations/amazon_web_services/">DataDog integration with AWS</a>
 to collect CloudWatch metrics. The mailer/messenger integration is only
-for the case you don’t want or you can’t use AWS CloudWatch.</p>
+for the case you don’t want or you can’t use AWS CloudWatch, e.g. in Azure or GCP.</p>
 <p>Note this integration requires the additional dependency of datadog python bindings:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datadog</span>
 </pre></div>
@@ -5546,7 +5584,9 @@ like so: <code class="docutils literal notranslate"><span class="pre">slack_msg_
 </tbody>
 </table>
 <p>Slack delivery can also be set via a resource’s tag name. For example, using “slack://tag/slack_channel” will look for a tag name of ‘slack_channel’, and if matched on a resource will deliver the message to the value of that resource’s tag:</p>
-<p><code class="docutils literal notranslate"><span class="pre">slack_channel:https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">slack_channel:https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX</span></code>
+<code class="docutils literal notranslate"><span class="pre">slack_channel:custodian-test</span></code>
+<code class="docutils literal notranslate"><span class="pre">owner:foo&#64;bar</span></code></p>
 <p>Delivery via tag has been tested with webhooks but should support all delivery methods.</p>
 </section>
 <section id="splunk-http-event-collector-hec">
@@ -5600,7 +5640,7 @@ Custodian mailer.</p>
 </section>
 <section id="usage-configuration">
 <h2>Usage &amp; Configuration<a class="headerlink" href="#usage-configuration" title="Permalink to this headline">¶</a></h2>
-<p>Once <a class="reference external" href="#developer-install-os-x-el-capitan">installed</a> you should have a
+<p>Once <span class="xref myst">installed</span> you should have a
 <code class="docutils literal notranslate"><span class="pre">c7n-mailer</span></code> executable on your path:
 aws</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(env) $ c7n-mailer
@@ -5611,8 +5651,8 @@ c7n-mailer: error: argument -c/--config is required
 </div>
 <p>Fundamentally what <code class="docutils literal notranslate"><span class="pre">c7n-mailer</span></code> does is deploy a Lambda (using
 <a class="reference external" href="http://cloudcustodian.io/docs/policy/mu.html">Mu</a>) based on
-configuration you specify in a YAML file.  Here is <a class="reference external" href="./c7n_mailer/cli.py#L11-L41">the
-schema</a> to which the file must conform,
+configuration you specify in a YAML file.  Here is <span class="xref myst">the
+schema</span> to which the file must conform,
 and here is a description of the options:</p>
 <table border="1" class="docutils">
 <thead>
@@ -5647,6 +5687,12 @@ and here is a description of the options:</p>
 <td align="left"><code>contact_tags</code></td>
 <td align="left">array of strings</td>
 <td align="left">tags that we should look at for address information</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"><code>email_base_url</code></td>
+<td align="left">string</td>
+<td align="left">Base URL to construct a valid email address from a resource owner</td>
 </tr>
 </tbody>
 </table>
@@ -5818,7 +5864,7 @@ and here is a description of the options:</p>
 <tr>
 <td align="center"></td>
 <td align="left"><code>ldap_bind_password</code></td>
-<td align="left">string</td>
+<td align="left">secured string</td>
 <td align="left">ldap bind password</td>
 </tr>
 <tr>
@@ -6121,6 +6167,23 @@ Custodian tries to decrypt the string using KMS, if it fails c7n treats it as a 
 </div>
 <p>Note: <code class="docutils literal notranslate"><span class="pre">secrets.get</span></code> permission on the KeyVault for the Service Principal is required.</p>
 </section>
+<section id="gcp">
+<h4>GCP<a class="headerlink" href="#gcp" title="Permalink to this headline">¶</a></h4>
+<p>You can store your secrets as GCP Secret Manager secrets and reference them from the policy.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">plaintext_secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;raw_secret&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">secured_string</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp.secretmanager</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/12345678912/secrets/your-secret</span><span class="w"></span>
+</pre></div>
+</div>
+<p>An example of an SMTP password set as a secured string:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">smtp_password</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp.secretmanager</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/59808015552/secrets/smtp_pw</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note: If you do not specify a version, <code class="docutils literal notranslate"><span class="pre">/versions/latest</span></code> will be appended to your secret location.</p>
+</section>
 </section>
 </section>
 <section id="configuring-a-policy-to-send-email">
@@ -6148,7 +6211,7 @@ Custodian tries to decrypt the string using KMS, if it fails c7n treats it as a 
 </div>
 <p>So breaking it down, you add an action of type <code class="docutils literal notranslate"><span class="pre">notify</span></code>. You can specify a
 template that’s used to format the email; customizing templates is described
-<a class="reference external" href="#writing-an-email-template">below</a>.</p>
+<span class="xref myst">below</span>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">to</span></code> list specifies the intended recipient for the email. You can specify
 either an email address, an SNS topic, a Datadog Metric, or a special value. The special values
 are either</p>
@@ -6284,6 +6347,59 @@ user management activity must be performed manually.</p>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SystemAssigned</span><span class="w"></span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="using-on-gcp">
+<h2>Using on GCP<a class="headerlink" href="#using-on-gcp" title="Permalink to this headline">¶</a></h2>
+<p>Requires:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">c7n_gcp</span></code> package.  See <a class="reference external" href="https://cloudcustodian.io/docs/gcp/gettingstarted.html">GCP Getting Started</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">google-cloud-secret-manager</span></code> package, for pulling in secured string values.</p></li>
+<li><p>A working SMTP Account.</p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/pubsub/docs/">GCP Pubsub Subscription</a></p></li>
+</ul>
+<p>The mailer supports GCP Pubsub transports and SMTP/Email delivery, as well as Datadog and Splunk.
+Configuration for this scenario requires only minor changes from AWS deployments.</p>
+<p>The notify action in your policy will reflect transport type <code class="docutils literal notranslate"><span class="pre">projects</span></code> with the URL
+to a GCP Pub/Sub Topic.  For example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">policies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp-notify</span><span class="w"></span>
+<span class="w">    </span><span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp.compute</span><span class="w"></span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example policy</span><span class="w"></span>
+<span class="w">    </span><span class="nt">actions</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notify</span><span class="w"></span>
+<span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">        </span><span class="nt">priority_header</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">subject</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello from C7N Mailer</span><span class="w"></span>
+<span class="w">        </span><span class="nt">to</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">you@youremail.com</span><span class="w"></span>
+<span class="w">        </span><span class="nt">transport</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pubsub</span><span class="w"></span>
+<span class="w">          </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/myproject/topics/mytopic</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In your mailer configuration, you’ll need to provide your SMTP account information
+as well as your topic subscription path in the queue_url variable. Please note that the
+subscription you specify should be subscribed to the topic you assign in your policies’
+notify action for GCP resources.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">queue_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/myproject/subscriptions/mysubscription</span><span class="w"></span>
+<span class="nt">from_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">you@youremail.com</span><span class="w"></span>
+<span class="c1"># c7n-mailer currently requires a role be present, even if it&#39;s empty</span><span class="w"></span>
+<span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+
+<span class="nt">smtp_server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my.smtp.add.ress</span><span class="w"></span>
+<span class="nt">smtp_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span><span class="w"></span>
+<span class="nt">smtp_ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="nt">smtp_username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smtpuser</span><span class="w"></span>
+<span class="nt">smtp_password</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp.secretmanager</span><span class="w"></span>
+<span class="w">  </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/12345678912/secrets/smtppassword</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The mailer will transmit all messages found on the queue on each execution using SMTP/Email delivery.</p>
+<section id="deploying-gcp-functions">
+<h3>Deploying GCP Functions<a class="headerlink" href="#deploying-gcp-functions" title="Permalink to this headline">¶</a></h3>
+<p>GCP Cloud Functions for c7n-mailer are currently not supported.</p>
 </section>
 </section>
 <section id="writing-an-email-template">

@@ -73,6 +73,8 @@ for more details.
         type: object
       function-prefix:
         type: string
+      handler:
+        type: string
       kms_key_arn:
         type: string
       layers:
@@ -165,6 +167,8 @@ A lambda policy using cloudwatch events rules on cloudtrail api logs.
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string
@@ -278,6 +282,8 @@ pushes resource evaluations to config.
         type: object
       function-prefix:
         type: string
+      handler:
+        type: string
       ignore-support-check:
         type: boolean
       kms_key_arn:
@@ -363,6 +369,8 @@ See `AWS Config <https://aws.amazon.com/config/>`_ for more details.
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string
@@ -451,6 +459,8 @@ for more details.
         type: object
       function-prefix:
         type: string
+      handler:
+        type: string
       kms_key_arn:
         type: string
       layers:
@@ -529,6 +539,8 @@ by AWS Guard Duty for automated incident response. See `Guard Duty
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string
@@ -624,6 +636,8 @@ resource specific.
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string
@@ -728,6 +742,8 @@ https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-
         type: object
       function-prefix:
         type: string
+      handler:
+        type: string
       kms_key_arn:
         type: string
       layers:
@@ -803,6 +819,8 @@ Runs Custodian in AWS lambda at user defined cron interval.
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string
@@ -896,6 +914,8 @@ for more details.
       execution-options:
         type: object
       function-prefix:
+        type: string
+      handler:
         type: string
       kms_key_arn:
         type: string

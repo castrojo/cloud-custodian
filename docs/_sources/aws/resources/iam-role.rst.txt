@@ -556,5 +556,5 @@ For example, if you want to automatically attach a policy to all roles which don
 
 
 
-Permissions - iam:AttachRolePolicy, iam:DetachRolePolicy
+Permissions - iam:AttachRolePolicy, iam:DetachRolePolicy, iam:ListAttachedRolePolicies
 

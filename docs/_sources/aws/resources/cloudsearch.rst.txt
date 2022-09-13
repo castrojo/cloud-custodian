@@ -12,6 +12,8 @@ Filters
 -------
 
 
+  - :ref:`domain-options <aws.common.filters.domain-options>`
+  
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -33,6 +35,8 @@ Actions
 
 
   - :ref:`delete <aws.cloudsearch.actions.delete>`
+
+  - :ref:`enable-https <aws.cloudsearch.actions.enable-https>`
 
   - :ref:`invoke-lambda <aws.common.actions.invoke-lambda>`
   
@@ -79,4 +83,52 @@ Parent base class for filters and actions.
 
 
 Permissions - cloudsearch:DeleteDomain
+
+
+.. _aws.cloudsearch.actions.enable-https:
+
+enable-https
+++++++++++++
+Enable HTTPs to cloudsearch
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: enable-https
+            resource: cloudsearch
+            filters:
+              - type: domain-options
+                key: Options.EnforceHTTPS
+                value: false
+            actions:
+              - type: enable-https
+                tls-policy: Policy-Min-TLS-1-0-2019-07
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      tls-policy:
+        enum:
+        - Policy-Min-TLS-1-0-2019-07
+        - Policy-Min-TLS-1-2-2019-07
+      type:
+        enum:
+        - enable-https
+    required:
+    - type
+
+
+
+
+Permissions - cloudsearch:UpdateDomainEndpointOptions
 

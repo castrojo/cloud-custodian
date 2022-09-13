@@ -32,6 +32,10 @@ Filters
   
   - :ref:`value <aws.common.filters.value>`
   
+  - :ref:`waf-enabled <aws.rest-stage.filters.waf-enabled>`
+
+  - :ref:`wafv2-enabled <aws.rest-stage.filters.wafv2-enabled>`
+
 
 
 .. _aws.rest-stage.filters.client-certificate:
@@ -190,6 +194,96 @@ against a locked version (requires use of is-locked filter).
 Permissions - config:GetResourceConfigHistory
 
 
+.. _aws.rest-stage.filters.waf-enabled:
+
+waf-enabled
++++++++++++
+Filter API Gateway stage by waf-regional web-acl
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: filter-apigw-waf-regional
+            resource: rest-stage
+            filters:
+              - type: waf-enabled
+                state: false
+                web-acl: test
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        type: boolean
+      type:
+        enum:
+        - waf-enabled
+      web-acl:
+        type: string
+    required:
+    - type
+
+
+
+
+Permissions - waf:ListWebACLs, waf:GetWebACL
+
+
+.. _aws.rest-stage.filters.wafv2-enabled:
+
+wafv2-enabled
++++++++++++++
+Filter API Gateway stage by wafv2 web-acl
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: filter-wafv2-apigw
+            resource: rest-stage
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: testv2
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        type: boolean
+      type:
+        enum:
+        - wafv2-enabled
+      web-acl:
+        type: string
+    required:
+    - type
+
+
+
+
+Permissions - wafv2:ListWebACLs
+
+
 
 
 Actions
@@ -218,6 +312,10 @@ Actions
   
   - :ref:`remove-tag <aws.common.actions.remove-tag>`
   
+  - :ref:`set-waf <aws.rest-stage.actions.set-waf>`
+
+  - :ref:`set-wafv2 <aws.rest-stage.actions.set-wafv2>`
+
   - :ref:`tag <aws.common.actions.tag>`
   
   - :ref:`update <aws.rest-stage.actions.update>`
@@ -266,6 +364,126 @@ Delete an api stage
 
 
 Permissions - apigateway:DELETE
+
+
+.. _aws.rest-stage.actions.set-waf:
+
+set-waf
++++++++
+Enable waf protection on API Gateway stage.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: set-waf-for-stage
+            resource: rest-stage
+            filters:
+              - type: waf-enabled
+                state: false
+                web-acl: test
+            actions:
+              - type: set-waf
+                state: true
+                web-acl: test
+
+          - name: disassociate-wafv2-associate-waf-regional-apigw
+            resource: rest-stage
+            filters:
+              - type: wafv2-enabled
+                state: true
+            actions:
+              - type: set-waf
+                state: true
+                web-acl: test
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        type: boolean
+      type:
+        enum:
+        - set-waf
+      web-acl:
+        type: string
+    required:
+    - web-acl
+    - type
+
+
+
+
+Permissions - waf-regional:AssociateWebACL, waf-regional:ListWebACLs
+
+
+.. _aws.rest-stage.actions.set-wafv2:
+
+set-wafv2
++++++++++
+Enable wafv2 protection on API Gateway stage.
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: set-wafv2-for-stage
+            resource: rest-stage
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: testv2
+            actions:
+              - type: set-wafv2
+                state: true
+                web-acl: testv2
+
+          - name: disassociate-waf-regional-associate-wafv2-apigw
+            resource: rest-stage
+            filters:
+              - type: waf-enabled
+                state: true
+            actions:
+              - type: set-wafv2
+                state: true
+                web-acl: testv2
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        type: boolean
+      type:
+        enum:
+        - set-wafv2
+      web-acl:
+        type: string
+    required:
+    - web-acl
+    - type
+
+
+
+
+Permissions - wafv2:AssociateWebACL, wafv2:ListWebACLs
 
 
 .. _aws.rest-stage.actions.update:

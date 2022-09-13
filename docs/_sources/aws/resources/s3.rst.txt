@@ -608,30 +608,28 @@ can be disabled per the example below.
 
 has-statement
 +++++++++++++
-Find buckets with set of policy statements.
-
+Find resources with matching access policy statements.
 :example:
-
 .. code-block:: yaml
-
         policies:
-          - name: s3-bucket-has-statement
-            resource: s3
+          - name: sns-check-statement-id
+            resource: sns
             filters:
               - type: has-statement
                 statement_ids:
-                  - RequiredEncryptedPutObject
-
-
+                  - BlockNonSSL
         policies:
-          - name: s3-public-policy
-            resource: s3
+          - name: sns-check-block-non-ssl
+            resource: sns
             filters:
               - type: has-statement
                 statements:
-                  - Effect: Allow
-                    Action: 's3:*'
+                  - Effect: Deny
+                    Action: 'SNS:Publish'
                     Principal: '*'
+                    Condition:
+                        Bool:
+                            "aws:SecureTransport": "false"
 
 .. container:: toggle
 

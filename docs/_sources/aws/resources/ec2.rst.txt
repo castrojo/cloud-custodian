@@ -64,6 +64,8 @@ Filters
 
   - :ref:`state-age <aws.ec2.filters.state-age>`
 
+  - :ref:`stop-protected <aws.ec2.filters.stop-protected>`
+
   - :ref:`subnet <aws.common.filters.subnet>`
   
   - :ref:`tag-count <aws.common.filters.tag-count>`
@@ -1277,6 +1279,58 @@ Age an instance has been in the given state.
 
 
 
+.. _aws.ec2.filters.stop-protected:
+
+stop-protected
+++++++++++++++
+EC2 instances with ``disableApiStop`` attribute set
+
+Filters EC2 instances with ``disableApiStop`` attribute set to true.
+
+:Example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: stop-protection-enabled
+        resource: ec2
+        filters:
+          - type: stop-protected
+
+:Example:
+
+.. code-block:: yaml
+
+    policies:
+      - name: stop-protection-NOT-enabled
+        resource: ec2
+        filters:
+          - not:
+            - type: stop-protected
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - stop-protected
+    required:
+    - type
+
+
+
+
+Permissions - ec2:DescribeInstanceAttribute
+
+
 .. _aws.ec2.filters.termination-protected:
 
 termination-protected
@@ -2109,7 +2163,7 @@ While ec2 offers a bulk delete api, any given instance can be configured
 with api deletion termination protection, so we can't use the bulk call
 reliabily, we need to process the instances individually. Additionally
 If we're configured with 'force' then we'll turn off instance termination
-protection.
+and stop protection.
 
 :Example:
 

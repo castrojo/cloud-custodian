@@ -14,14 +14,93 @@ Filters
 
   - :ref:`event <gcp.common.filters.event>`
   
+  - :ref:`marked-for-op <gcp.sql-instance.filters.marked-for-op>`
+
   - :ref:`metrics <gcp.sql-instance.filters.metrics>`
 
+  - :ref:`offhour <gcp.common.filters.offhour>`
+  
+  - :ref:`onhour <gcp.common.filters.onhour>`
+  
   - :ref:`reduce <gcp.common.filters.reduce>`
   
   - :ref:`scc-findings <gcp.common.filters.scc-findings>`
   
   - :ref:`value <gcp.common.filters.value>`
   
+
+
+.. _gcp.sql-instance.filters.marked-for-op:
+
+marked-for-op
++++++++++++++
+Filter resources for label specified future action
+
+Filters resources by a 'custodian_status' label which specifies a future
+date for an action.
+
+The filter parses the label values looking for an 'op@date'
+string. The date is parsed and compared to do today's date, the
+filter succeeds if today's date is gte to the target date.
+
+The optional 'skew' parameter provides for incrementing today's
+date a number of days into the future. An example use case might
+be sending a final notice email a few days before terminating an
+instance, or snapshotting a volume prior to deletion.
+
+The optional 'skew_hours' parameter provides for incrementing the current
+time a number of hours into the future.
+
+Optionally, the 'tz' parameter can get used to specify the timezone
+in which to interpret the clock (default value is 'utc')
+
+:example:
+
+.. code-block :: yaml
+
+   policies:
+    - name: vm-stop-marked
+      resource: gcp.instance
+      filters:
+        - type: marked-for-op
+          # The default label used is custodian_status
+          # but that is configurable
+          label: custodian_status
+          op: stop
+          # Another optional label is skew
+          tz: utc
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      label:
+        type: string
+      op:
+        type: string
+      skew:
+        minimum: 0
+        type: number
+      skew_hours:
+        minimum: 0
+        type: number
+      type:
+        enum:
+        - marked-for-op
+      tz:
+        type: string
+    required:
+    - type
+
+
+
 
 
 .. _gcp.sql-instance.filters.metrics:
@@ -165,8 +244,12 @@ Actions
 
   - :ref:`delete <gcp.sql-instance.actions.delete>`
 
+  - :ref:`mark-for-op <gcp.sql-instance.actions.mark-for-op>`
+
   - :ref:`notify <gcp.common.actions.notify>`
   
+  - :ref:`set-labels <gcp.sql-instance.actions.set-labels>`
+
   - :ref:`start <gcp.sql-instance.actions.start>`
 
   - :ref:`stop <gcp.sql-instance.actions.stop>`
@@ -208,6 +291,163 @@ an encapsulation of the 80%.
 
 
 Permissions - cloudsql.instances.delete
+
+
+.. _gcp.sql-instance.actions.mark-for-op:
+
+mark-for-op
++++++++++++
+Label resources for future action.
+
+The optional 'tz' parameter can be used to adjust the clock to align
+with a given timezone. The default value is 'utc'.
+
+If neither 'days' nor 'hours' is specified, Cloud Custodian will default
+to marking the resource for action 4 days in the future.
+
+:example:
+
+.. code-block :: yaml
+
+   policies:
+    - name: vm-mark-for-stop
+      resource: gcp.instance
+      filters:
+        - type: value
+          key: name
+          value: instance-to-stop-in-four-days
+      actions:
+        - type: mark-for-op
+          op: stop
+          days: 2
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      days:
+        exclusiveMinimum: false
+        minimum: 0
+        type: number
+      hours:
+        exclusiveMinimum: false
+        minimum: 0
+        type: number
+      label:
+        type: string
+      msg:
+        type: string
+      op:
+        type: string
+      type:
+        enum:
+        - mark-for-op
+      tz:
+        type: string
+    required:
+    - type
+
+
+
+
+Permissions - cloudsql.instances.update
+
+
+.. _gcp.sql-instance.actions.set-labels:
+
+set-labels
+++++++++++
+Set labels to GCP resources
+
+:example:
+
+This policy will label all existing resource groups with a value such as environment
+
+.. code-block:: yaml
+
+  policies:
+    - name: gcp-add-multiple-labels
+      resource: gcp.instance
+      description: |
+        Label all existing instances with multiple labels
+      actions:
+       - type: set-labels
+         labels:
+           environment: test
+           env_type: customer
+
+    - name: gcp-add-label-from-resource-attr
+      resource: gcp.instance
+      description: |
+        Label all existing instances with label taken from resource attribute
+      actions:
+       - type: set-labels
+         labels:
+           environment:
+            type: resource
+            key: name
+            default-value: name_not_found
+
+    - name: gcp-remove-label
+      resource: gcp.instance
+      description: |
+        Remove label from all instances
+      actions:
+       - type: set-labels
+         remove: [env]
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      labels:
+        additionalProperties:
+          oneOf:
+          - oneOf:
+            - additionalProperties: false
+              properties:
+                default-value:
+                  type: string
+                key:
+                  type: string
+                type:
+                  enum:
+                  - resource
+                  type: string
+              required:
+              - type
+              - key
+            type: object
+          - type: string
+        type: object
+      remove:
+        items:
+          type: string
+        type: array
+      type:
+        enum:
+        - set-labels
+    required:
+    - type
+
+
+
+
+Permissions - cloudsql.instances.update
 
 
 .. _gcp.sql-instance.actions.start:

@@ -14,6 +14,8 @@ Filters
 
   - :ref:`config-compliance <aws.common.filters.config-compliance>`
   
+  - :ref:`cross-az-nat-gateway-route <aws.route-table.filters.cross-az-nat-gateway-route>`
+
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -36,6 +38,50 @@ Filters
   
   - :ref:`vpc <aws.common.filters.vpc>`
   
+
+
+.. _aws.route-table.filters.cross-az-nat-gateway-route:
+
+cross-az-nat-gateway-route
+++++++++++++++++++++++++++
+Filter route-tables to find those with routes which send traffic
+from a subnet in an az to a nat gateway in a different az.
+
+This filter is useful for cost optimization, resiliency, and
+performance use-cases, where we don't want network traffic to
+cross from one availability zone (AZ) to another AZ.
+
+:Example:
+.. code-block:: yaml
+        policies:
+          - name: cross-az-nat-gateway-traffic
+            resource: aws.route-table
+            filters:
+                - type: cross-az-nat-gateway-route
+            actions:
+              - notify
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - cross-az-nat-gateway-route
+    required:
+    - type
+
+
+
+
+Permissions - ec2:DescribeRouteTables, ec2:DescribeNatGateways, ec2:DescribeSubnets
 
 
 .. _aws.route-table.filters.json-diff:

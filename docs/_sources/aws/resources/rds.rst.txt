@@ -21,6 +21,8 @@ Filters
 
   - :ref:`default-vpc <aws.rds.filters.default-vpc>`
 
+  - :ref:`engine <aws.common.filters.engine>`
+  
   - :ref:`event <aws.common.filters.event>`
   
   - :ref:`finding <aws.common.filters.finding>`
@@ -63,7 +65,8 @@ Filters
 
 consecutive-snapshots
 +++++++++++++++++++++
-Returns instances where number of consective daily snapshots is equal to/or greater than n days.
+Returns instances where number of consective daily snapshots is
+equal to/or greater than n days.
 
 :example:
 

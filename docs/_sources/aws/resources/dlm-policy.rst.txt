@@ -16,6 +16,8 @@ Filters
   
   - :ref:`event <aws.common.filters.event>`
   
+  - :ref:`finding <aws.common.filters.finding>`
+  
   - :ref:`ops-item <aws.common.filters.ops-item>`
   
   - :ref:`reduce <aws.common.filters.reduce>`
@@ -30,6 +32,10 @@ Actions
 -------
 
 
+  - :ref:`auto-tag-user <aws.common.actions.auto-tag-user>`
+  
+  - :ref:`copy-related-tag <aws.common.actions.copy-related-tag>`
+  
   - :ref:`invoke-lambda <aws.common.actions.invoke-lambda>`
   
   - :ref:`invoke-sfn <aws.common.actions.invoke-sfn>`
@@ -41,6 +47,10 @@ Actions
   - :ref:`post-item <aws.common.actions.post-item>`
   
   - :ref:`put-metric <aws.common.actions.put-metric>`
+  
+  - :ref:`remove-tag <aws.common.actions.remove-tag>`
+  
+  - :ref:`tag <aws.common.actions.tag>`
   
   - :ref:`webhook <aws.common.actions.webhook>`
   

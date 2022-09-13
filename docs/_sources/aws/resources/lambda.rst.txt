@@ -604,6 +604,8 @@ Actions
   
   - :ref:`set-concurrency <aws.lambda.actions.set-concurrency>`
 
+  - :ref:`set-xray-tracing <aws.lambda.actions.set-xray-tracing>`
+
   - :ref:`tag <aws.common.actions.tag>`
   
   - :ref:`trim-versions <aws.lambda.actions.trim-versions>`
@@ -742,6 +744,42 @@ the resource.
 
 
 Permissions - lambda:DeleteFunctionConcurrency, lambda:PutFunctionConcurrency
+
+
+.. _aws.lambda.actions.set-xray-tracing:
+
+set-xray-tracing
+++++++++++++++++
+ This action allows for enable Xray tracing to Active
+:example:
+.. code-block:: yaml
+    actions:
+      - type: enable-xray-tracing
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      state:
+        default: true
+        type: boolean
+      type:
+        enum:
+        - set-xray-tracing
+    required:
+    - type
+
+
+
+
+Permissions - lambda:UpdateFunctionConfiguration
 
 
 .. _aws.lambda.actions.trim-versions:

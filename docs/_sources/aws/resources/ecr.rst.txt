@@ -26,6 +26,8 @@ Filters
 
   - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
   
+  - :ref:`metrics <aws.common.filters.metrics>`
+  
   - :ref:`ops-item <aws.common.filters.ops-item>`
   
   - :ref:`reduce <aws.common.filters.reduce>`
