@@ -9,3 +9,5 @@ servicecatalog resources
 
 
    catalog-portfolio.rst
+
+   catalog-product.rst

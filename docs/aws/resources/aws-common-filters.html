@@ -129,6 +129,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/ebssnapshots.html">EBS - Create and Manage Snapshots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/ebsunencrypted.html">EBS - Delete Unencrypted</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/ec2-auto-tag-user.html">EC2 - auto-tag aws userName on resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ec2ModifyInstanceMetadataOptions.html">EC2 - Modify Instance Metadata Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ec2ModifyInstanceMetadataOptions.html#examples">Examples:</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/ec2offhours.html">EC2 - Offhours Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/ec2oldinstances.html">EC2 - Old Instance Report</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/ec2poweronstoppedforpatching.html">EC2 - Power On For Scheduled Patching</a></li>
@@ -286,6 +290,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#image">image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#instance-attribute">instance-attribute</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logging">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#login-profile">login-profile</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#marked-for-op">marked-for-op</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#metrics">metrics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#network-location">network-location</a></li>
@@ -359,10 +364,26 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="group-apigatewayv2.html">apigatewayv2 resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apigwv2.html">aws.apigwv2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apigwv2.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apigwv2.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="group-appflow.html">appflow resources</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="app-flow.html">aws.app-flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="app-flow.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="app-flow.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="group-appsync.html">appsync resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphql-api.html">aws.graphql-api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graphql-api.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="graphql-api.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -1202,6 +1223,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="group-lakeformation.html">lakeformation resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="datalake-location.html">aws.datalake-location</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="datalake-location.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datalake-location.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="group-lambda.html">lambda resources</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="lambda.html">aws.lambda</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="lambda.html#filters">Filters</a></li>
@@ -1331,6 +1360,11 @@
 <li class="toctree-l3"><a class="reference internal" href="rds-param-group.html">aws.rds-param-group</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="rds-param-group.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rds-param-group.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rds-proxy.html">aws.rds-proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rds-proxy.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rds-proxy.html#actions">Actions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="rds-reserved.html">aws.rds-reserved</a><ul>
@@ -1499,6 +1533,11 @@
 <li class="toctree-l3"><a class="reference internal" href="catalog-portfolio.html">aws.catalog-portfolio</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="catalog-portfolio.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="catalog-portfolio.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="catalog-product.html">aws.catalog-product</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="catalog-product.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="catalog-product.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -5186,6 +5225,37 @@
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes/gettingstarted.html">Getting Started (Alpha)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/gettingstarted.html#install-kubernetes-plugin">Install Kubernetes Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes/gettingstarted.html#option-1-install-released-packages-to-local-python-environment">Option 1: Install released packages to local Python Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes/gettingstarted.html#option-2-install-latest-from-the-repository">Option 2: Install latest from the repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/gettingstarted.html#connecting-to-your-cluster">Connecting to your Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/gettingstarted.html#write-your-first-policy">Write Your First Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/gettingstarted.html#run-your-policy">Run Your Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes/controllermode.html">Kubernetes Controller Mode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/controllermode.html#install-the-server">Install the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes/controllermode.html#option-1-manual-installation">Option 1: Manual installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes/controllermode.html#option-2-helm-chart">Option 2: Helm chart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/controllermode.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/controllermode.html#authoring-policies">Authoring Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes/examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/examples/deny-pod-exec-attach.html">Denying Pod Exec or Attach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/examples/require-label-on-event.html">Require Labels on Resources on Creation or Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/examples/require-replicas.html">Require Replicas on Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/examples/restrict-service-account-usage.html">Restrict Service Account Usage</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../tools/c7n-org.html">c7n-org: Multi Account Custodian Execution</a><ul>
@@ -5400,6 +5470,7 @@
 <li><p><a class="reference internal" href="#aws-common-filters-image"><span class="std std-ref">image</span></a></p></li>
 <li><p><a class="reference internal" href="#aws-common-filters-instance-attribute"><span class="std std-ref">instance-attribute</span></a></p></li>
 <li><p><a class="reference internal" href="#aws-common-filters-logging"><span class="std std-ref">logging</span></a></p></li>
+<li><p><a class="reference internal" href="#aws-common-filters-login-profile"><span class="std std-ref">login-profile</span></a></p></li>
 <li><p><a class="reference internal" href="#aws-common-filters-marked-for-op"><span class="std std-ref">marked-for-op</span></a></p></li>
 <li><p><a class="reference internal" href="#aws-common-filters-metrics"><span class="std std-ref">metrics</span></a></p></li>
 <li><p><a class="reference internal" href="#aws-common-filters-network-location"><span class="std std-ref">network-location</span></a></p></li>
@@ -6559,6 +6630,97 @@ iam access policies to determine access outside of a zone of trust.</p>
 </div>
 </div>
 </section>
+<section id="login-profile">
+<span id="aws-common-filters-login-profile"></span><h2>login-profile<a class="headerlink" href="#login-profile" title="Permalink to this headline">¶</a></h2>
+<p>Filter IAM users that have an associated login-profile</p>
+<p>For quicker evaluation and reduced API traffic, it is recommended to
+instead use the ‘credential’ filter with ‘password_enabled’: true when
+a delay of up to four hours for credential report syncing is acceptable.</p>
+<p>(<a class="reference external" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html</a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="toggle docutils container">
+<div class="header docutils container" style=""></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">properties</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span><span class="w"></span>
+<span class="w">  </span><span class="nt">key</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">  </span><span class="nt">op</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eq</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equal</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ne</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not-equal</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gt</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">greater-than</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ge</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gte</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">le</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lte</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lt</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">less-than</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glob</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regex</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regex-case</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ni</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not-in</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contains</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">difference</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">intersect</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">login-profile</span><span class="w"></span>
+<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">oneOf</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">array</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">number</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;null&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">value_from</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">additionalProperties</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;False&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">expr</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">oneOf</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">      </span><span class="nt">format</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">txt</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv2dict</span><span class="w"></span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">url</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span><span class="w"></span>
+<span class="w">  </span><span class="nt">value_regex</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">  </span><span class="nt">value_type</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">age</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expiration</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalize</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">size</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cidr_size</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swap</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resource_count</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expr</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unique_size</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w"></span>
+<span class="nt">required</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</section>
 <section id="marked-for-op">
 <span id="aws-common-filters-marked-for-op"></span><h2>marked-for-op<a class="headerlink" href="#marked-for-op" title="Permalink to this headline">¶</a></h2>
 <p>Filter resources for tag specified future action</p>
@@ -6705,12 +6867,6 @@ policy to treat their request counts as 0.</p>
 <span class="w">  </span><span class="nt">period</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">number</span><span class="w"></span>
 <span class="w">  </span><span class="nt">statistics</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Average</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Maximum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minimum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleCount</span><span class="w"></span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
@@ -7326,12 +7482,6 @@ but no more than 15.</p>
 <span class="w">  </span><span class="nt">period</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">number</span><span class="w"></span>
 <span class="w">  </span><span class="nt">statistics</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Average</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Maximum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minimum</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleCount</span><span class="w"></span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>

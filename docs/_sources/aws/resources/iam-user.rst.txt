@@ -30,6 +30,8 @@ Filters
 
   - :ref:`json-diff <aws.iam-user.filters.json-diff>`
 
+  - :ref:`login-profile <aws.common.filters.login-profile>`
+  
   - :ref:`marked-for-op <aws.common.filters.marked-for-op>`
   
   - :ref:`mfa-device <aws.iam-user.filters.mfa-device>`

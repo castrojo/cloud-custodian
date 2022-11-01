@@ -706,6 +706,10 @@ wafv2-enabled
 +++++++++++++
 Filter Application LoadBalancer by wafv2 web-acl
 
+Supports regex expression for web-acl.
+Firewall Manager pushed WebACL's name varies by account and region.
+Regex expression can support both local and Firewall Managed WebACL.
+
 :example:
 
 .. code-block:: yaml
@@ -717,6 +721,13 @@ Filter Application LoadBalancer by wafv2 web-acl
               - type: wafv2-enabled
                 state: false
                 web-acl: testv2
+
+          - name: filter-wafv2-elb-regex
+            resource: app-elb
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: .*FMManagedWebACLV2-?FMS-.*
 
 .. container:: toggle
 
@@ -1144,6 +1155,8 @@ set-wafv2
 +++++++++
 Enable wafv2 protection on Application LoadBalancer.
 
+Supports regex expression for web-acl
+
 :example:
 
 .. code-block:: yaml
@@ -1168,7 +1181,18 @@ Enable wafv2 protection on Application LoadBalancer.
             actions:
               - type: set-wafv2
                 state: true
-                web-acl: testv2
+
+        policies:
+          - name: set-wafv2-for-elb-regex
+            resource: app-elb
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: .*FMManagedWebACLV2-?FMS-.*
+            actions:
+              - type: set-wafv2
+                state: true
+                web-acl: FMManagedWebACLV2-?FMS-TestWebACL
 
 .. container:: toggle
 
@@ -1189,11 +1213,10 @@ Enable wafv2 protection on Application LoadBalancer.
       web-acl:
         type: string
     required:
-    - web-acl
     - type
 
 
 
 
-Permissions - wafv2:AssociateWebACL, wafv2:ListWebACLs
+Permissions - wafv2:AssociateWebACL, wafv2:DisassociateWebACL, wafv2:ListWebACLs
 

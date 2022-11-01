@@ -338,6 +338,13 @@ Filter CloudFront distribution by wafv2 web-acl
                 state: false
                 web-acl: testv2
 
+          - name: filter-distribution-wafv2-regex
+            resource: distribution
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: .*FMManagedWebACLV2-?FMS-.*
+
 .. container:: toggle
 
   
@@ -702,6 +709,18 @@ Enable wafv2 protection on CloudFront distribution.
                 force: true
                 web-acl: test
 
+        policies:
+          - name: set-wafv2-for-cloudfront-regex
+            resource: distribution
+            filters:
+              - type: wafv2-enabled
+                state: false
+                web-acl: .*FMManagedWebACLV2-?FMS-.*
+            actions:
+              - type: set-wafv2
+                state: true
+                web-acl: FMManagedWebACLV2-?FMS-TestWebACL
+
 .. container:: toggle
 
   
@@ -723,7 +742,6 @@ Enable wafv2 protection on CloudFront distribution.
       web-acl:
         type: string
     required:
-    - web-acl
     - type
 
 

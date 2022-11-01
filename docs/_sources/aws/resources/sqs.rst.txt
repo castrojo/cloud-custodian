@@ -630,6 +630,9 @@ set-encryption
 ++++++++++++++
 Action to set encryption key on SQS queue
 
+you can also optionally set data key 'reuse-period', or use with
+the service managed encryption by not specifying a key.
+
 :example:
 
 .. code-block:: yaml
@@ -654,13 +657,19 @@ Action to set encryption key on SQS queue
   .. code-block:: yaml
 
     properties:
+      enabled:
+        type: boolean
       key:
         type: string
+      reuse-period:
+        maximum: 86400
+        minimum: 60
+        type: integer
       type:
         enum:
         - set-encryption
     required:
-    - key
+    - type
 
 
 

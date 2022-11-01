@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cask: easy custodian exec via docker" href="cask.html" />
-    <link rel="prev" title="awscc.xray_samplingrule" href="../awscc/resources/xray_samplingrule.html" /> 
+    <link rel="prev" title="Restrict Service Account Usage" href="../kubernetes/examples/restrict-service-account-usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -129,6 +129,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ebssnapshots.html">EBS - Create and Manage Snapshots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ebsunencrypted.html">EBS - Delete Unencrypted</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ec2-auto-tag-user.html">EC2 - auto-tag aws userName on resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/examples/ec2ModifyInstanceMetadataOptions.html">EC2 - Modify Instance Metadata Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/examples/ec2ModifyInstanceMetadataOptions.html#examples">Examples:</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ec2offhours.html">EC2 - Offhours Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ec2oldinstances.html">EC2 - Old Instance Report</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/examples/ec2poweronstoppedforpatching.html">EC2 - Power On For Scheduled Patching</a></li>
@@ -286,6 +290,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#image">image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#instance-attribute">instance-attribute</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#logging">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#login-profile">login-profile</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#marked-for-op">marked-for-op</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#metrics">metrics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/aws-common-filters.html#network-location">network-location</a></li>
@@ -359,10 +364,26 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-apigatewayv2.html">apigatewayv2 resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/apigwv2.html">aws.apigwv2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/apigwv2.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/apigwv2.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-appflow.html">appflow resources</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/app-flow.html">aws.app-flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/app-flow.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/app-flow.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-appsync.html">appsync resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/graphql-api.html">aws.graphql-api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/graphql-api.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/graphql-api.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -1202,6 +1223,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-lakeformation.html">lakeformation resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/datalake-location.html">aws.datalake-location</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/datalake-location.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/datalake-location.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/resources/group-lambda.html">lambda resources</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/lambda.html">aws.lambda</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/lambda.html#filters">Filters</a></li>
@@ -1331,6 +1360,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/rds-param-group.html">aws.rds-param-group</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/rds-param-group.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/rds-param-group.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/rds-proxy.html">aws.rds-proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/rds-proxy.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/rds-proxy.html#actions">Actions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/rds-reserved.html">aws.rds-reserved</a><ul>
@@ -1499,6 +1533,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../aws/resources/catalog-portfolio.html">aws.catalog-portfolio</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/catalog-portfolio.html#filters">Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../aws/resources/catalog-portfolio.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../aws/resources/catalog-product.html">aws.catalog-product</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/catalog-product.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aws/resources/catalog-product.html#actions">Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -5186,6 +5225,37 @@
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes/gettingstarted.html">Getting Started (Alpha)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/gettingstarted.html#install-kubernetes-plugin">Install Kubernetes Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes/gettingstarted.html#option-1-install-released-packages-to-local-python-environment">Option 1: Install released packages to local Python Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes/gettingstarted.html#option-2-install-latest-from-the-repository">Option 2: Install latest from the repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/gettingstarted.html#connecting-to-your-cluster">Connecting to your Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/gettingstarted.html#write-your-first-policy">Write Your First Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/gettingstarted.html#run-your-policy">Run Your Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes/controllermode.html">Kubernetes Controller Mode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/controllermode.html#install-the-server">Install the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes/controllermode.html#option-1-manual-installation">Option 1: Manual installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes/controllermode.html#option-2-helm-chart">Option 2: Helm chart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/controllermode.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/controllermode.html#authoring-policies">Authoring Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes/examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/examples/deny-pod-exec-attach.html">Denying Pod Exec or Attach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/examples/require-label-on-event.html">Require Labels on Resources on Creation or Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/examples/require-replicas.html">Require Replicas on Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes/examples/restrict-service-account-usage.html">Restrict Service Account Usage</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">c7n-org: Multi Account Custodian Execution</a><ul>
@@ -5372,7 +5442,7 @@
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="../awscc/resources/xray_samplingrule.html" class="btn btn-neutral float-left" title="awscc.xray_samplingrule" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kubernetes/examples/restrict-service-account-usage.html" class="btn btn-neutral float-left" title="Restrict Service Account Usage" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="cask.html" class="btn btn-neutral float-right" title="cask: easy custodian exec via docker" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -5545,6 +5615,13 @@ addition to the default runtime variables custodian provides like
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;tag:CostCenter&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;{charge_code}&quot;</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Another enhancement for <code class="docutils literal notranslate"><span class="pre">c7n-org</span> <span class="pre">run-script</span></code> is to support a few vars in the script arg.
+The available vars are <code class="docutils literal notranslate"><span class="pre">account</span></code>, <code class="docutils literal notranslate"><span class="pre">account_id</span></code>, <code class="docutils literal notranslate"><span class="pre">region</span></code> and <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c7n-org run-script -s . -c my-projects.yml gcp_check_<span class="o">{</span>region<span class="o">}</span>.sh
+<span class="c1"># or</span>
+c7n-org run-script -s . -c my-projects.yml use_another_policy_result.sh <span class="o">{</span>output_dir<span class="o">}</span>
+</pre></div>
+</div>
 <p><strong>Note</strong> Variable interpolation is sensitive to proper quoting and spacing,
 i.e., <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">charge_code</span> <span class="pre">}</span></code> would be invalid due to the extra white space. Additionally,
 yaml parsing can transform a value like <code class="docutils literal notranslate"><span class="pre">{charge_code}</span></code> to null, unless it’s quoted
@@ -5577,7 +5654,7 @@ page</a>.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../awscc/resources/xray_samplingrule.html" class="btn btn-neutral float-left" title="awscc.xray_samplingrule" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kubernetes/examples/restrict-service-account-usage.html" class="btn btn-neutral float-left" title="Restrict Service Account Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="cask.html" class="btn btn-neutral float-right" title="cask: easy custodian exec via docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -22,6 +22,8 @@ Filters
   
   - :ref:`finding <aws.common.filters.finding>`
   
+  - :ref:`has-statement <aws.elasticsearch.filters.has-statement>`
+
   - :ref:`json-diff <aws.elasticsearch.filters.json-diff>`
 
   - :ref:`kms-key <aws.elasticsearch.filters.kms-key>`
@@ -36,6 +38,8 @@ Filters
   
   - :ref:`security-group <aws.common.filters.security-group>`
   
+  - :ref:`source-ip <aws.elasticsearch.filters.source-ip>`
+
   - :ref:`subnet <aws.common.filters.subnet>`
   
   - :ref:`value <aws.common.filters.value>`
@@ -386,6 +390,99 @@ Filter to return all elasticsearch domains with inbound cross-cluster with the g
 Permissions - es:ESCrossClusterGet
 
 
+.. _aws.elasticsearch.filters.has-statement:
+
+has-statement
++++++++++++++
+Find resources with matching access policy statements.
+:example:
+.. code-block:: yaml
+        policies:
+          - name: sns-check-statement-id
+            resource: sns
+            filters:
+              - type: has-statement
+                statement_ids:
+                  - BlockNonSSL
+        policies:
+          - name: sns-check-block-non-ssl
+            resource: sns
+            filters:
+              - type: has-statement
+                statements:
+                  - Effect: Deny
+                    Action: 'SNS:Publish'
+                    Principal: '*'
+                    Condition:
+                        Bool:
+                            "aws:SecureTransport": "false"
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      statement_ids:
+        items:
+          type: string
+        type: array
+      statements:
+        items:
+          properties:
+            Action:
+              anyOf:
+              - type: string
+              - type: array
+            Condition:
+              type: object
+            Effect:
+              enum:
+              - Allow
+              - Deny
+              type: string
+            NotAction:
+              anyOf:
+              - type: string
+              - type: array
+            NotPrincipal:
+              anyOf:
+              - type: object
+              - type: array
+            NotResource:
+              anyOf:
+              - type: string
+              - type: array
+            Principal:
+              anyOf:
+              - type: string
+              - type: object
+              - type: array
+            Resource:
+              anyOf:
+              - type: string
+              - type: array
+            Sid:
+              type: string
+          required:
+          - Effect
+          type: object
+        type: array
+      type:
+        enum:
+        - has-statement
+    required:
+    - type
+
+
+
+
+
 .. _aws.elasticsearch.filters.json-diff:
 
 json-diff
@@ -563,6 +660,122 @@ keys. The above policy can also be written as:
 Permissions - kms:ListKeys, kms:DescribeKey
 
 
+.. _aws.elasticsearch.filters.source-ip:
+
+source-ip
++++++++++
+ValueFilter-based filter for verifying allowed source ips in
+an ElasticSearch domain's access policy. Useful for checking to see if
+an ElasticSearch domain allows traffic from non approved IP addresses/CIDRs.
+
+:example:
+Find ElasticSearch domains that allow traffic from IP addresses
+not in the approved list (string matching)
+.. code-block: yaml
+
+  - type: source-ip
+    op: not-in
+    value: ["103.15.250.0/24", "173.240.160.0/21", "206.108.40.0/21"]
+
+Same  as above but using cidr matching instead of string matching
+.. code-block: yaml
+  - type: source-ip
+    op: not-in
+    value_type: cidr
+    value: ["103.15.250.0/24", "173.240.160.0/21", "206.108.40.0/21"]
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - source-ip
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
+
+Permissions - es:DescribeElasticsearchDomainConfig
+
+
 
 
 Actions
@@ -591,12 +804,16 @@ Actions
   
   - :ref:`put-metric <aws.common.actions.put-metric>`
   
+  - :ref:`remove-matched-source-ips <aws.elasticsearch.actions.remove-matched-source-ips>`
+
   - :ref:`remove-statements <aws.elasticsearch.actions.remove-statements>`
 
   - :ref:`remove-tag <aws.common.actions.remove-tag>`
   
   - :ref:`tag <aws.common.actions.tag>`
   
+  - :ref:`update-tls-config <aws.elasticsearch.actions.update-tls-config>`
+
   - :ref:`webhook <aws.common.actions.webhook>`
   
 
@@ -630,6 +847,52 @@ Parent base class for filters and actions.
 
 
 Permissions - es:DeleteElasticsearchDomain
+
+
+.. _aws.elasticsearch.actions.remove-matched-source-ips:
+
+remove-matched-source-ips
++++++++++++++++++++++++++
+Action to remove matched source ips from a Access Policy. This action
+needs to be used in conjunction with the source-ip filter. It can be used
+for removing non-approved IP addresses from the the access policy of a
+ElasticSearch domain.
+
+:example:
+.. code-block:: yaml
+        policies:
+          - name: es-access-revoke
+            resource: elasticsearch
+            filters:
+              - type: source-ip
+                value_type: cidr
+                op: not-in
+                value_from:
+                   url: s3://my-bucket/allowed_cidrs.csv
+            actions:
+              - type: remove-matched-source-ips
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - remove-matched-source-ips
+    required:
+    - type
+
+
+
+
+Permissions - es:UpdateElasticsearchDomainConfig
 
 
 .. _aws.elasticsearch.actions.remove-statements:
@@ -681,4 +944,55 @@ Action to remove policy statements from elasticsearch
 
 
 Permissions - es:DescribeElasticsearchDomainConfig, es:UpdateElasticsearchDomainConfig
+
+
+.. _aws.elasticsearch.actions.update-tls-config:
+
+update-tls-config
++++++++++++++++++
+Action to update tls-config on a domain endpoint
+
+:example:
+
+.. code-block:: yaml
+
+        policies:
+          - name: update-tls-config
+            resource: elasticsearch
+            filters:
+              - type: value
+                key: 'DomainEndpointOptions.TLSSecurityPolicy'
+                op: eq
+                value: "Policy-Min-TLS-1-0-2019-07"
+            actions:
+              - type: update-tls-config
+                value: "Policy-Min-TLS-1-2-2019-07"
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      type:
+        enum:
+        - update-tls-config
+      value:
+        enum:
+        - Policy-Min-TLS-1-0-2019-07
+        - Policy-Min-TLS-1-2-2019-07
+        type: string
+    required:
+    - value
+    - type
+
+
+
+
+Permissions - es:UpdateElasticsearchDomainConfig, es:ListDomainNames
 

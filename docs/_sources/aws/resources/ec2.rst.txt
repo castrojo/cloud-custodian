@@ -1888,6 +1888,15 @@ Disable metadata server access
          - type: set-metadata-access
            endpoint: disabled
 
+   policies:
+     - name: ec2-enable-metadata-tags
+       resource: ec2
+       filters:
+         - MetadataOptions.InstanceMetadataTags: disabled
+       actions:
+         - type: set-metadata-access
+           metadata-tags: enabled
+
 Reference: https://amzn.to/2XOuxpQ
 
 .. container:: toggle
@@ -1907,6 +1916,8 @@ Reference: https://amzn.to/2XOuxpQ
       - required:
         - tokens
       - required:
+        - metadatatags
+      - required:
         - hop-limit
       endpoint:
         enum:
@@ -1916,6 +1927,10 @@ Reference: https://amzn.to/2XOuxpQ
         maximum: 64
         minimum: 1
         type: integer
+      metadata-tags:
+        enum:
+        - enabled
+        - disabled
       tokens:
         enum:
         - required

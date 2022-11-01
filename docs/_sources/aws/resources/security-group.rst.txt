@@ -202,6 +202,28 @@ a given set of ports, *note* OnlyPorts is an inverse match.
       op: in
       value: x.y.z
 
+`value_type: cidr` can also filter if cidr is a subset of cidr
+value range. In this example we are allowing any smaller cidrs within
+allowed_cidrs.csv.
+
+.. code-block:: yaml
+
+  - type: ingress
+    Cidr:
+      value_type: cidr
+      op: not-in
+      value_from:
+        url: s3://a-policy-data-us-west-2/allowed_cidrs.csv
+        format: csv
+
+or value can be specified as a list:
+
+  - type: ingress
+    Cidr:
+      value_type: cidr
+      op: not-in
+      value: ["10.0.0.0/8", "192.168.0.0/16"]
+
 `Cidr` can match ipv4 rules and `CidrV6` can match ipv6 rules.  In
 this example we are blocking global inbound connections to SSH or
 RDP.
@@ -415,6 +437,28 @@ a given set of ports, *note* OnlyPorts is an inverse match.
       value_type: cidr
       op: in
       value: x.y.z
+
+`value_type: cidr` can also filter if cidr is a subset of cidr
+value range. In this example we are allowing any smaller cidrs within
+allowed_cidrs.csv.
+
+.. code-block:: yaml
+
+  - type: ingress
+    Cidr:
+      value_type: cidr
+      op: not-in
+      value_from:
+        url: s3://a-policy-data-us-west-2/allowed_cidrs.csv
+        format: csv
+
+or value can be specified as a list:
+
+  - type: ingress
+    Cidr:
+      value_type: cidr
+      op: not-in
+      value: ["10.0.0.0/8", "192.168.0.0/16"]
 
 `Cidr` can match ipv4 rules and `CidrV6` can match ipv6 rules.  In
 this example we are blocking global inbound connections to SSH or
@@ -702,19 +746,37 @@ Permissions - lambda:ListFunctions, ec2:DescribeNetworkInterfaces, autoscaling:D
 used
 ++++
 Filter to security groups that are used.
-
 This operates as a complement to the unused filter for multi-step
 workflows.
-
 :example:
-
 .. code-block:: yaml
-
         policies:
           - name: security-groups-in-use
             resource: security-group
             filters:
               - used
+
+        policies:
+          - name: security-groups-used-by-rds
+            resource: security-group
+            filters:
+              - used
+              - type: value
+                key: c7n:InstanceOwnerIds
+                op: intersect
+                value:
+                  - amazon-rds
+
+        policies:
+          - name: security-groups-used-by-natgw
+            resource: security-group
+            filters:
+              - used
+              - type: value
+                key: c7n:InterfaceTypes
+                op: intersect
+                value:
+                  - nat_gateway
 
 .. container:: toggle
 

@@ -48,6 +48,9 @@ Filters
    - :ref:`logging <AWS.common.filters.logging>`
 
 
+   - :ref:`login-profile <AWS.common.filters.login-profile>`
+
+
    - :ref:`marked-for-op <AWS.common.filters.marked-for-op>`
 
 
@@ -1408,6 +1411,117 @@ Checks Redshift logging status and attributes.
 
 
 
+.. _AWS.common.filters.login-profile:
+
+login-profile
++++++++++++++
+
+Filter IAM users that have an associated login-profile
+
+For quicker evaluation and reduced API traffic, it is recommended to
+instead use the 'credential' filter with 'password_enabled': true when
+a delay of up to four hours for credential report syncing is acceptable.
+
+(https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html)
+
+:example:
+
+.. code-block: yaml
+
+    policies:
+      - name: iam-users-with-console-access
+        resource: iam-user
+        filters:
+          - type: login-profile
+
+.. container:: toggle
+
+  
+
+  .. raw:: html
+     
+    <div class="header docutils container" style=""></div>
+
+  .. code-block:: yaml
+
+    properties:
+      default:
+        type: object
+      key:
+        type: string
+      op:
+        enum:
+        - eq
+        - equal
+        - ne
+        - not-equal
+        - gt
+        - greater-than
+        - ge
+        - gte
+        - le
+        - lte
+        - lt
+        - less-than
+        - glob
+        - regex
+        - regex-case
+        - in
+        - ni
+        - not-in
+        - contains
+        - difference
+        - intersect
+      type:
+        enum:
+        - login-profile
+      value:
+        oneOf:
+        - type: array
+        - type: string
+        - type: boolean
+        - type: number
+        - type: 'null'
+      value_from:
+        additionalProperties: 'False'
+        properties:
+          expr:
+            oneOf:
+            - type: integer
+            - type: string
+          format:
+            enum:
+            - csv
+            - json
+            - txt
+            - csv2dict
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      value_regex:
+        type: string
+      value_type:
+        enum:
+        - age
+        - integer
+        - expiration
+        - normalize
+        - size
+        - cidr
+        - cidr_size
+        - swap
+        - resource_count
+        - expr
+        - unique_size
+        - date
+        - version
+    required:
+    - type
+
+
+
 .. _AWS.common.filters.marked-for-op:
 
 marked-for-op
@@ -1593,12 +1707,6 @@ Note the default statistic for metrics is Average.
       period:
         type: number
       statistics:
-        enum:
-        - Average
-        - Sum
-        - Maximum
-        - Minimum
-        - SampleCount
         type: string
       type:
         enum:
@@ -2321,12 +2429,6 @@ Specialized metrics filter for shield
       period:
         type: number
       statistics:
-        enum:
-        - Average
-        - Sum
-        - Maximum
-        - Minimum
-        - SampleCount
         type: string
       type:
         enum:

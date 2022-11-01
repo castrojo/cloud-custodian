@@ -1729,6 +1729,8 @@ Configure bucket inventories for an s3 bucket.
           - ObjectLockMode
           - ObjectLockLegalHoldStatus
           - IntelligentTieringAccessTier
+          - BucketKeyStatus
+          - ChecksumAlgorithm
         type: array
       format:
         enum:
