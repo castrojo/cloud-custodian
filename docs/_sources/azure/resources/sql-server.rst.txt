@@ -86,8 +86,8 @@ Filters
   
   - :ref:`value <azure.common.filters.value>`
   
-  - :ref:`vulnerability-assessment <azure.sql-server.filters.vulnerability-assessment>`
-
+  - :ref:`vulnerability-assessment <azure.common.filters.vulnerability-assessment>`
+  
 
 
 .. _azure.sql-server.filters.firewall-bypass:
@@ -139,51 +139,6 @@ This policy will find all SQL Servers with enabled Azure Services bypass rules
     required:
     - mode
     - list
-    - type
-
-
-
-
-
-.. _azure.sql-server.filters.vulnerability-assessment:
-
-vulnerability-assessment
-++++++++++++++++++++++++
-Filter sql servers by whether they have recurring vulnerability scans
-enabled.
-
-:example:
-
-Find SQL servers without vulnerability assessments enabled.
-
-.. code-block:: yaml
-
-    policies:
-      - name: sql-server-no-va
-        resource: azure.sql-server
-        filters:
-          - type: vulnerability-assessment
-            enabled: false
-
-.. container:: toggle
-
-  
-
-  .. raw:: html
-     
-    <div class="header docutils container" style=""></div>
-
-  .. code-block:: yaml
-
-    properties:
-      enabled:
-        type: boolean
-      type:
-        enum:
-        - vulnerability-assessment
-    required:
-    - type
-    - enabled
     - type
 
 

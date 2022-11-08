@@ -1910,6 +1910,7 @@
 <li class="toctree-l3"><a class="reference internal" href="azure-common-filters.html#storage-diagnostic-settings">storage-diagnostic-settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="azure-common-filters.html#value">value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="azure-common-filters.html#vm-extensions">vm-extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="azure-common-filters.html#vulnerability-assessment">vulnerability-assessment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="group-ai-%2B-machine-learning.html">AI + Machine Learning resources</a><ul>
@@ -5519,7 +5520,7 @@
 <li><p><a class="reference internal" href="azure-common-filters.html#azure-common-filters-reduce"><span class="std std-ref">reduce</span></a></p></li>
 <li><p><a class="reference internal" href="azure-common-filters.html#azure-common-filters-resource-lock"><span class="std std-ref">resource-lock</span></a></p></li>
 <li><p><a class="reference internal" href="azure-common-filters.html#azure-common-filters-value"><span class="std std-ref">value</span></a></p></li>
-<li><p><a class="reference internal" href="#azure-sql-server-filters-vulnerability-assessment"><span class="std std-ref">vulnerability-assessment</span></a></p></li>
+<li><p><a class="reference internal" href="azure-common-filters.html#azure-common-filters-vulnerability-assessment"><span class="std std-ref">vulnerability-assessment</span></a></p></li>
 </ul>
 </div></blockquote>
 <section id="firewall-bypass">
@@ -5559,38 +5560,6 @@
 <span class="nt">required</span><span class="p">:</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mode</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="vulnerability-assessment">
-<span id="azure-sql-server-filters-vulnerability-assessment"></span><h3>vulnerability-assessment<a class="headerlink" href="#vulnerability-assessment" title="Permalink to this headline">¶</a></h3>
-<p>Filter sql servers by whether they have recurring vulnerability scans
-enabled.</p>
-<dl class="field-list simple">
-<dt class="field-odd">example</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>Find SQL servers without vulnerability assessments enabled.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">policies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-server-no-va</span><span class="w"></span>
-<span class="w">    </span><span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure.sql-server</span><span class="w"></span>
-<span class="w">    </span><span class="nt">filters</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vulnerability-assessment</span><span class="w"></span>
-<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="toggle docutils container">
-<div class="header docutils container" style=""></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">properties</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span><span class="w"></span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">enum</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vulnerability-assessment</span><span class="w"></span>
-<span class="nt">required</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
 </pre></div>
 </div>
